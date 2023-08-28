@@ -28,7 +28,7 @@ namespace CMPG223_Group_13
             this.Bought_Quantity = Bought_Quantity;
         }
 
-        public Order getByID(int ID)
+        public static Order getByID(int ID)
         {
             string sql = $"SELECT * FROM Order_ID WHERE Order_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);

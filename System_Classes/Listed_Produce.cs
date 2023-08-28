@@ -25,7 +25,7 @@ namespace CMPG223_Group_13
             this.Available_Quantity = Available_Quantity;
             this.Expiration_Dates = Expiration_Dates;
         }
-        public Listed_Produce getByID(int ID)
+        public static Listed_Produce getByID(int ID)
         {
             string sql = $"SELECT * FROM LP_ID WHERE LP_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);

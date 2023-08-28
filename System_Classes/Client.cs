@@ -37,7 +37,7 @@ namespace CMPG223_Group_13
             this.Shipping_Address = shipping_Address;
         }
 
-        public Client getByID(int ID)
+        public static Client getByID(int ID)
         {
             string sql = $"SELECT * FROM Client WHERE Client_ID = {ID}";
             DataTable dt =  DatabaseHandler.executeSelectToDT(sql);

@@ -24,7 +24,7 @@ namespace CMPG223_Group_13
             this.UOM_ID = UOM_ID;
         }
 
-        public Produce getByID(int ID)
+        public static Produce getByID(int ID)
         {
             string sql = $"SELECT * FROM Produce_ID WHERE Produce_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);

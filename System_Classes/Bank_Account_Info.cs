@@ -28,7 +28,7 @@ namespace CMPG223_Group_13
             this.Account_Number = Account_Number;
         }
 
-        public Bank_Account_Info getByID(int ID)
+        public static Bank_Account_Info getByID(int ID)
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Bank_Account_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);

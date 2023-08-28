@@ -20,7 +20,7 @@ namespace CMPG223_Group_13
             this.Abbreviation = Abbreviation;
         }
 
-        public Unit_of_Measure getByID(int ID)
+        public static Unit_of_Measure getByID(int ID)
         {
             string sql = $"SELECT * FROM UOM_ID WHERE UOM_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);

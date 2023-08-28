@@ -21,7 +21,7 @@ namespace CMPG223_Group_13
             this.Farm_Address = Farm_Address;
         }
 
-        public Farm getByID(int ID)
+        public static Farm getByID(int ID)
         {
             string sql = $"SELECT * FROM Farm_ID WHERE Farm_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
