@@ -8,6 +8,11 @@ namespace CMPG223_Group_13
 {
     class Bank_Account_Info
     {
+        /*
+         * Example:
+         * get methods - instead of "Object.getBank_Account_ID()" only use "Object.Bank_Account_ID"
+         * set methods - instead of "Object.setBank_Account_ID(value)" only use "Object.Bank_Account_ID = value"
+        */
         public int Bank_Account_ID { get; set; }
         public int User_ID { get; set; }
         public string Bank_Name { get; set; }
