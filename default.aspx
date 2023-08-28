@@ -16,6 +16,24 @@
         .auto-style3 {
             height: 26px;
         }
+        .auto-style4 {
+            width: 241px;
+        }
+        .auto-style5 {
+            height: 26px;
+            width: 241px;
+        }
+        .auto-style6 {
+            width: 411px;
+            height: 20px;
+        }
+        .auto-style7 {
+            height: 20px;
+            width: 241px;
+        }
+        .auto-style8 {
+            height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -39,21 +57,21 @@
         <table style="width:100%;">
             <tr>
                 <td class="auto-style1">&nbsp;</td>
-                <td>
+                <td class="auto-style4">
                     <asp:Label ID="lblLoginType" runat="server" Text="Select login type:"></asp:Label>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td>
-                    <asp:RadioButton ID="rbtnClient" runat="server" GroupName="Login Type" Text="Client" />
+                <td class="auto-style6"></td>
+                <td class="auto-style7">
+                    <asp:RadioButton ID="rbtnClient" runat="server" GroupName="Login Type" Text="Client" Height="8px" Width="128px" />
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style8"></td>
             </tr>
             <tr>
-                <td class="auto-style2"></td>
-                <td class="auto-style3">
+                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style5">
                     <asp:RadioButton ID="rbtnFarmer" runat="server" GroupName="Login Type" Text="Farmer" />
                 </td>
                 <td class="auto-style3"></td>
