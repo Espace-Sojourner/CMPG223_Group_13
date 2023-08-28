@@ -44,6 +44,21 @@ input[type=submit]
     box-sizing: border-box;
 }
 
+.columns
+{
+    display: flex;
+    justify-content: left;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: solid;
+    border-color: #155d96;
+}
+
 .box 
 {
     display: flex;
