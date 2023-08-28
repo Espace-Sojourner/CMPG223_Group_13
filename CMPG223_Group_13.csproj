@@ -126,8 +126,6 @@
     <Compile Include="System_Classes\Bank_Account_Info.cs" />
     <Compile Include="System_Classes\Farm.cs" />
     <Compile Include="System_Classes\Listed_Produce.cs" />
-    <Compile Include="System_Classes\obj\Debug\net6.0\System_Classes.AssemblyInfo.cs" />
-    <Compile Include="System_Classes\obj\Debug\net6.0\System_Classes.GlobalUsings.g.cs" />
     <Compile Include="System_Classes\Order.cs" />
     <Compile Include="System_Classes\Produce.cs" />
     <Compile Include="System_Classes\Unit_of_Measure.cs" />
@@ -135,15 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="System_Classes\obj\Debug\net6.0\System_Classes.AssemblyInfoInputs.cache" />
-    <Content Include="System_Classes\obj\Debug\net6.0\System_Classes.assets.cache" />
-    <Content Include="System_Classes\obj\Debug\net6.0\System_Classes.csproj.AssemblyReference.cache" />
-    <Content Include="System_Classes\obj\Debug\net6.0\System_Classes.GeneratedMSBuildEditorConfig.editorconfig" />
-    <Content Include="System_Classes\obj\project.assets.json" />
-    <Content Include="System_Classes\obj\project.nuget.cache" />
-    <Content Include="System_Classes\obj\System_Classes.csproj.nuget.dgspec.json" />
-    <Content Include="System_Classes\obj\System_Classes.csproj.nuget.g.props" />
-    <Content Include="System_Classes\obj\System_Classes.csproj.nuget.g.targets" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
