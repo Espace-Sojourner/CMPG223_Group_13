@@ -9,7 +9,7 @@ namespace CMPG223_Group_13
 {
     public class DatabaseHandler
     {
-        private static string conString = "";
+        private static string conString = "@\"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Databases.mdf;Integrated Security=True\"";
         private static SqlConnection con = new SqlConnection(conString);
 
         public static void executeUpdate(string updateCmd)
