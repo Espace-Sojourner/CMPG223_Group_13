@@ -95,6 +95,7 @@
     <Compile Include="create-account.aspx.designer.cs">
       <DependentUpon>create-account.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseHandler.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -118,6 +119,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\Client.cs" />
     <Compile Include="System_Classes\Farm.cs" />
     <Compile Include="System_Classes\Listed_Produce.cs" />
     <Compile Include="System_Classes\obj\Debug\net6.0\System_Classes.AssemblyInfo.cs" />
@@ -125,7 +127,6 @@
     <Compile Include="System_Classes\Order.cs" />
     <Compile Include="System_Classes\Produce.cs" />
     <Compile Include="System_Classes\Unit_of_Measure.cs" />
-    <Compile Include="System_Classes\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
