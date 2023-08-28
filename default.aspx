@@ -17,11 +17,11 @@
             height: 26px;
         }
         .auto-style4 {
-            width: 241px;
+            width: 182px;
         }
         .auto-style5 {
             height: 26px;
-            width: 241px;
+            width: 182px;
         }
         .auto-style6 {
             width: 411px;
@@ -29,7 +29,7 @@
         }
         .auto-style7 {
             height: 20px;
-            width: 241px;
+            width: 182px;
         }
         .auto-style8 {
             height: 20px;
@@ -41,15 +41,19 @@
         <div style="text-align: center">
             <h1>Login</h1>
             <div class="box">
-                Username: <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
+                Username:<br />
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Username required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+&nbsp;<asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
                 <br />
-                Password: <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>           
+                Password:<br />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPassword" ErrorMessage="Password required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+&nbsp;<asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>           
             </div>
         </div>
         <p>
             &nbsp;</p>
         <div>
-            <asp:Button ID="btnLogin" runat="server" Height="46px" Text="Login" Width="97px" />
+            <asp:Button ID="btnLogin" runat="server" Height="46px" Text="Login" Width="97px" OnClick="btnLogin_Click" />
         </div>
         <div>
             <br />
@@ -60,14 +64,16 @@
                 <td class="auto-style4">
                     <asp:Label ID="lblLoginType" runat="server" Text="Select login type:"></asp:Label>
                 </td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Label ID="lblError" runat="server" Font-Italic="True" ForeColor="Red"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style6"></td>
                 <td class="auto-style7">
                     <asp:RadioButton ID="rbtnClient" runat="server" GroupName="Login Type" Text="Client" Height="8px" Width="128px" />
                 </td>
-                <td class="auto-style8"></td>
+                <td class="auto-style8">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
