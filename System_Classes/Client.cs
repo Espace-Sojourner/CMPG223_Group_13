@@ -9,7 +9,7 @@ namespace CMPG223_Group_13
 {
     public enum ClientType
     {
-        Normal,
+        Client,
         Admin
     }
 
