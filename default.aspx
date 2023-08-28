@@ -13,8 +13,7 @@
             <div>
                 Username: <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
                 <br />
-                Password: <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>
-                
+                Password: <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>           
             </div>
         </div>
     </form>
