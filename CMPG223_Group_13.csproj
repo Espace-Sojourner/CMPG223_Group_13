@@ -67,17 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MainDatabase.mdf" />
-    <Content Include="App_Data\MainDatabase_log.ldf">
-      <DependentUpon>MainDatabase.mdf</DependentUpon>
+    <Content Include="App_Data\Databases.mdf" />
+    <Content Include="App_Data\Databases_log.ldf">
+      <DependentUpon>Databases.mdf</DependentUpon>
     </Content>
-    <Content Include="browse-produce.aspx" />
-    <Content Include="change-account-details.aspx" />
-    <Content Include="create-account.aspx" />
-    <Content Include="default.aspx" />
-    <Content Include="general.css" />
-    <Content Include="list-produce.aspx" />
-    <Content Include="listing-details.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
