@@ -1,0 +1,13 @@
+﻿body 
+{
+    display: inline;
+    justify-content: center;
+    text-align: center;
+}
+
+.box 
+{
+    display: list-item;
+    align-items: center;
+}
+

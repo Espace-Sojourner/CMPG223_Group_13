@@ -75,7 +75,9 @@
     <Content Include="change-account-details.aspx" />
     <Content Include="create-account.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
+    <Content Include="listing-details.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +115,13 @@
     </Compile>
     <Compile Include="list-produce.aspx.designer.cs">
       <DependentUpon>list-produce.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listing-details.aspx.cs">
+      <DependentUpon>listing-details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listing-details.aspx.designer.cs">
+      <DependentUpon>listing-details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
