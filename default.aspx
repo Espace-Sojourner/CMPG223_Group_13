@@ -8,9 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="box">
+        <div style="text-align: center">
             <h1>Login</h1>
-            <div>
+            <div class="box">
                 Username: <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
                 <br />
                 Password: <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>           

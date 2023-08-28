@@ -8,30 +8,30 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="box">
+        <div class="box">       
             <h1>Create account</h1>
             <h2>Account details</h2>
-            <div>
-                Username: <asp:TextBox ID="tbUsername" runat="server" Width="150px"></asp:TextBox>
-                <br />
-                Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px"></asp:TextBox>
-                <br />
-                Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px"></asp:TextBox>
+            <div class="right-aligned-sub-box">  
+                <div>Username: <asp:TextBox ID="tbUsername" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <h2>Personal details</h2>
-            First name: <asp:TextBox ID="tbFirstname" runat="server" Width="150px"></asp:TextBox>
-            <br />
-            Last name: <asp:TextBox ID="tbLastname" runat="server" Width="150px"></asp:TextBox>
-            <br />
-            Email address: <asp:TextBox ID="tbEmail" runat="server" Width="150px"></asp:TextBox>
-            <br />
-            Phone number: <asp:TextBox ID="tbPhone" runat="server" Width="150px"></asp:TextBox>
-            <br />
-            <br />
+            <div class="right-aligned-sub-box">
+                <div>First name: <asp:TextBox ID="tbFirstname" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Last name: <asp:TextBox ID="tbLastname" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Email address: <asp:TextBox ID="tbEmail" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Phone number: <asp:TextBox ID="tbPhone" runat="server" Width="150px"></asp:TextBox></div>
+            </div>
             <h2>Account type</h2>
-            <asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" />
-            <br />
-            Farm name:<asp:TextBox ID="tbFarmName" runat="server" Visible="False" Width="150px"></asp:TextBox>
+            <div class="right-aligned-sub-box">               
+                <div><asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" /></div>
+                <div>Farm name: <asp:TextBox ID="tbFarmName" runat="server" Visible="False" Width="150px"></asp:TextBox></div>
+            </div>
+            <div class="right-aligned-sub-box">               
+                <div><asp:Button ID="btnCreate" runat="server" Text="Create Account" /></div>
+            </div>
+
         </div>
     </form>
 </body>
