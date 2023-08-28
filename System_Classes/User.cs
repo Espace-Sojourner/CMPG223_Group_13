@@ -8,12 +8,12 @@ namespace CMPG223_Group_13
 {
     class User
     {
-        int User_ID;
-        string User_Password;
-        string First_Name;
-        string Last_Name;
-        string Email_Address;
-        string Phone_Number;
+        public int User_ID { get; set; }
+        public string User_Password { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
+        public string Email_Address { get; set; }
+        public string Phone_Number { get; set; }
 
         public User(int User_ID, string User_Password, string First_Name, string Last_Name, string Email_Address, string Phone_Number)
         {
@@ -23,61 +23,6 @@ namespace CMPG223_Group_13
             this.Last_Name = Last_Name;
             this.Email_Address = Email_Address;
             this.Phone_Number = Phone_Number;
-        }
-
-        public void setUserID(int userID)
-        {
-            User_ID = userID;
-        }
-
-        public void SetPassword(string password)
-        {
-            User_Password = password;
-        }
-
-        public void SetFirstName(string firstName)
-        {
-            First_Name = firstName;
-        }
-
-        public void SetLastName(string lastName) 
-        {
-            Last_Name = lastName;
-        }
-
-        public void setEmailAddress(string emailAddress) 
-        {
-            Email_Address = emailAddress;
-        }
-
-        public void setPhoneNumber(string phoneNumber)
-        {
-            Phone_Number = phoneNumber;
-        }
-
-        public int getID()
-        {
-            return User_ID;
-        }
-
-        public string getPassword()
-        {
-            return User_Password;
-        }
-
-        public string getFirstName()
-        {
-            return First_Name;
-        }
-
-        public string getEmailAddress()
-        {
-            return Email_Address;
-        }
-
-        public string getPhoneNumber()
-        {
-            return Phone_Number;
         }
     }
 }

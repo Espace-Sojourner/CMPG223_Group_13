@@ -8,11 +8,11 @@ namespace CMPG223_Group_13
 {
     class Produce
     {
-        int Produce_ID;
-        int UOM_ID;
-        string Produce_Name;
-        string Description;
-        string Image_Link;
+        public int Produce_ID { get; set; }
+        public int UOM_ID { get; set; }
+        public string Produce_Name { get; set; }
+        public string Description { get; set; }
+        public string Image_Link { get; set; }
 
         public Produce(int Produce_ID, int UOM_ID, string Produce_Name, string Description, string Image_Link)
         {
@@ -22,52 +22,5 @@ namespace CMPG223_Group_13
             this.Description = Description;
             this.Image_Link = Image_Link;
         }
-
-        public void setName(string name)
-        {
-            Produce_Name = name;
-        }
-
-        public void setDescription(string description)
-        {
-            Description = description;
-        }
-
-        public void setImageLink(string imageLink)
-        {
-            Image_Link = imageLink;
-        }
-
-        public void setUOMID(int uomID)
-        {
-            UOM_ID = uomID;
-        }
-
-        public int getID()
-        {
-            return Produce_ID;
-        }
-
-        public int getUOMID()
-        {
-            return UOM_ID;
-        }
-
-        public string getName()
-        {
-            return Produce_Name;
-        }
-
-        public string getDescription()
-        {
-            return Description;
-        }
-
-        public string getImageLink()
-        {
-            return Image_Link;
-        }
-
-
     }
 }
