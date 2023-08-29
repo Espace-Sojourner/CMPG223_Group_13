@@ -41,18 +41,7 @@ namespace CMPG223_Group_13
                 tbPassword.Text = password;
 
                 //check if inputted info is correct
-                if(DatabaseHandler.verifyUserInfo(login_type, email, password))
-                {
-                    //save object
-                    if(login_type == "Client")
-                    {
-
-                    }
-                }
-                else
-                {
-                    lblError.Text = "Invalid User data";
-                }
+                
             }
             else
             {
