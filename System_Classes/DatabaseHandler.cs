@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -12,6 +13,7 @@ namespace CMPG223_Group_13
         private static string conString = "@\"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Databases.mdf;Integrated Security=True\"";
         private static SqlConnection con = new SqlConnection(conString);
 
+        //Receives Update SQL Statement and handles Updating
         public static void executeUpdate(string updateCmd)
         {
             try
@@ -30,6 +32,7 @@ namespace CMPG223_Group_13
             finally { con.Close(); }
         }
 
+        //Receives Insert SQL Statement and handles Inserting
         public static void executeInsert(string insertCmd)
         {
             try
@@ -48,6 +51,16 @@ namespace CMPG223_Group_13
             finally { con.Close(); }
         }
 
+
+        //Receives SQL Select statement with table name and GridView that has to display data
+        public static void LoadGV(string selectCmd, string tableName, ref DataGrid gvData)
+        {
+            DataSet ds = executeSelectToDS(selectCmd, tableName);
+            gvData.DataSource = ds;
+            gvData.DataBind();
+        }
+
+        //Receives Delete SQL Statement and handles Deleting
         public static void executeDelete(string deleteCmd)
         {
             try
@@ -66,6 +79,8 @@ namespace CMPG223_Group_13
             finally { con.Close(); }
         }
 
+        //Receives Select SQL Statement and Database Table Name
+        //Fills DataSet with data from SQL statement execution and return DataSet
         public static DataSet executeSelectToDS(string selectCmd, string tableName)
         {
             try
@@ -89,6 +104,20 @@ namespace CMPG223_Group_13
             finally { con.Close(); }
         }
 
+        /*
+         * USAGE
+         * 
+         *  ----Loading Data To GridView-----
+         *        
+         *        1)  string sql = "SELECT * FROM TableName"
+         *        2)  DataSet ds = DatabaseHandler.executeSelectToDS(sql, "TableName");
+         *        3)  gridView.DataSource = ds;
+         *        4)  gridView.DataBind();
+         * 
+         */
+
+        //Receives Select SQL Statement
+        //Creates DataTable with data from SQL statement execution and returns the DataTable
         public static DataTable executeSelectToDT(string selectCmd)
         {
             try
@@ -108,6 +137,36 @@ namespace CMPG223_Group_13
             catch (SqlException er) { return null; }
             finally { con.Close(); }
         }
+
+        /*
+         * USAGE
+         * 
+         *  ----Getting data from database-----
+         * 
+         *        string sql = $"SELECT * FROM TableName";
+         *        DataTable dt = DatabaseHandler.executeSelectToDT(sql);
+         *        if (dt.Rows.Count == 0)
+         *        {
+         *            //Database returned nothing
+         *            return null;
+         *        }
+         *        else 
+         *        {
+         *            //Database returned at least one object
+         *            foreach (DataRow row in dt.Rows)
+         *            {
+         *                //DataType variableName = row["ColumnName"];
+         *                
+         *                //e.g.
+         *                string name = row["Name"];
+         *                string surname = row["Surname"];
+         *                int age = row["Age"];
+         *            }
+         *        }
+         *        
+         *        // If the only one object is needed or returned dt.Rows[0]["ColumnName"] can be used.
+         * 
+         */
 
     }
 }
