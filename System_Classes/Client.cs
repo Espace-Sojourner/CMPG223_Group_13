@@ -15,7 +15,7 @@ namespace CMPG223_Group_13
         Farmer
     }
 
-    class Client
+    public class Client
     {
         public int Client_ID { get; set; }
         public ClientType Client_Type { get; set; }

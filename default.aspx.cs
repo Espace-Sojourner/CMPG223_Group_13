@@ -14,6 +14,7 @@ namespace CMPG223_Group_13
         public static string login_type; // Client or Farmer depending on login type. Is static to allow other forms to access it easier if needed
         string email;
         string password;
+        public static Client user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +43,15 @@ namespace CMPG223_Group_13
                 //check if inputted info is correct
                 if(DatabaseHandler.verifyUserInfo(login_type, email, password))
                 {
+                    //save object
+                    if(login_type == "Client")
+                    {
 
+                    }
+                }
+                else
+                {
+                    lblError.Text = "Invalid User data";
                 }
             }
             else
