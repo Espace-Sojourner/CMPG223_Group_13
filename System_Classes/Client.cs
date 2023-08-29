@@ -56,6 +56,7 @@ namespace CMPG223_Group_13
             else return RowToClient(dt.Rows[0]);
         }
 
+
         /*public static Client getByEmail(string Email)
         {
             string sql = $"SELECT * FROM Client WHERE Email_Address = {Email}";
