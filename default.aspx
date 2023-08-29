@@ -54,6 +54,8 @@
             &nbsp;</p>
         <div>
             <asp:Button ID="btnLogin" runat="server" Height="46px" Text="Login" Width="97px" OnClick="btnLogin_Click" />
+            <br />
+                    <asp:Label ID="lblError" runat="server" Font-Italic="True" ForeColor="Red"></asp:Label>
         </div>
         <div>
             <br />
@@ -65,8 +67,7 @@
                     <asp:Label ID="lblLoginType" runat="server" Text="Select login type:"></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="lblError" runat="server" Font-Italic="True" ForeColor="Red"></asp:Label>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style6"></td>
