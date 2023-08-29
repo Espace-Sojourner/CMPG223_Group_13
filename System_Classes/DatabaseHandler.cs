@@ -108,29 +108,5 @@ namespace CMPG223_Group_13
             catch (SqlException er) { return null; }
             finally { con.Close(); }
         }
-
-        public static Boolean verifyUserInfo(string tablename, string email, string password)
-        {
-            int count = 0;
-            con.Open();
-
-            //count how many users in tablename match the info
-            using (SqlCommand cmd = new SqlCommand(@"SELECT COUNT(*) FROM " + tablename + " WHERE Email_Address LIKE @email AND Password LIKE @password", con))
-            {
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@password", password);
-                count = (int)cmd.ExecuteScalar();
-            }
-
-            if(count < 1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
     }
 }
