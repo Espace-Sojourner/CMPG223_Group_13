@@ -32,5 +32,45 @@ namespace CMPG223_Group_13
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             return new Order((int)dt.Rows[0]["Order_ID"], (int)dt.Rows[0]["Client_ID"], (int)dt.Rows[0]["LP_ID"], (DateTime)dt.Rows[0]["Order_Date"], (double)dt.Rows[0]["Order_Price"], (int)dt.Rows[0]["Bought_Quantity"]);
         }
+
+        public static bool Exists(Order order)
+        {
+            if (getByID(order.Order_ID) == null) return false;
+            else return true;
+        }
+
+        public static void insertIntoDB(Order order)
+        {
+            if (Exists(order))
+            {
+                //Error Handling
+
+            }
+            else
+            {
+                string sql = $"INSERT INTO Order (Order_ID, Client_ID, LP_ID, Order_Date, Order_Price, Bought_Quantity) " +
+                    $"VALUES ({order.Order_ID}, {order.Client_ID}, {order.LP_ID}, '{order.Order_Date}', {order.Order_Price}, {order.Bought_Quantity})";
+                DatabaseHandler.executeInsert(sql);
+            }
+        }
+
+        public static void updateInDB(Order order)
+        {
+            if (Exists(order))
+            {
+                string sql = $"UPDATE Order SET " +
+                    $"Client_ID = {order.Client_ID}, " +
+                    $"LP_ID = {order.LP_ID}, " +
+                    $"Order_Date = '{order.Order_ID}' " +
+                    $"Order_Price = {order.Order_Price}" +
+                    $"Bought_Quantity = {order.Bought_Quantity}";
+                DatabaseHandler.executeUpdate(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
     }
 }

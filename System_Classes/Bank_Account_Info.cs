@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMPG223_Group_13
 {
-    class Bank_Account_Info
+    public class Bank_Account_Info
     {
         /*
          * Example:
