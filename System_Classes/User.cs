@@ -15,7 +15,7 @@ namespace CMPG223_Group_13
         Farmer
     }
 
-    class User
+    public class User
     {
         public int User_ID { get; set; }
         public UserType UserType { get; set; }

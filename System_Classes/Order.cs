@@ -59,9 +59,9 @@ namespace CMPG223_Group_13
             if (Exists(order))
             {
                 string sql = $"UPDATE Order SET " +
-                    $"Client_ID = '{order.Client_ID}', " +
-                    $"LP_ID = '{order.LP_ID}', " +
-                    $"Order_Date = {order.Order_ID} " +
+                    $"Client_ID = {order.Client_ID}, " +
+                    $"LP_ID = {order.LP_ID}, " +
+                    $"Order_Date = '{order.Order_ID}' " +
                     $"Order_Price = {order.Order_Price}" +
                     $"Bought_Quantity = {order.Bought_Quantity}";
                 DatabaseHandler.executeUpdate(sql);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMPG223_Group_13
 {
-    class Farm
+    public class Farm
     {
         public int Farm_ID { get; set; }
         public int Farmer_ID { get; set; }

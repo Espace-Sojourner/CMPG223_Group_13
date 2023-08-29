@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMPG223_Group_13
 {
-    class Unit_of_Measure
+    public class Unit_of_Measure
     {
         public int UOM_ID { get; set; }
         public string UOM_Name { get; set; }
