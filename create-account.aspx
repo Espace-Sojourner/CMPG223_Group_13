@@ -14,7 +14,9 @@
             <div class="right-aligned-sub-box">  
                 <div>Username: <asp:TextBox ID="tbUsername" runat="server" Width="150px"></asp:TextBox></div>
                 <div>Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px"></asp:TextBox></div>
-                <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px"></asp:TextBox>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="The passwords don't match" ControlToCompare="tbPassword" ControlToValidate="tbConfirmPassword"></asp:CompareValidator>
+                </div>
             </div>
             <h2>Personal details</h2>
             <div class="right-aligned-sub-box">
