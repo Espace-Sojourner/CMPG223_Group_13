@@ -67,9 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MainDatabase.mdf" />
-    <Content Include="App_Data\MainDatabase_log.ldf">
-      <DependentUpon>MainDatabase.mdf</DependentUpon>
+    <Content Include="App_Data\Databases.mdf" />
+    <Content Include="App_Data\Databases_log.ldf">
+      <DependentUpon>Databases.mdf</DependentUpon>
     </Content>
     <Content Include="browse-produce.aspx" />
     <Content Include="change-account-details.aspx" />
@@ -77,7 +77,6 @@
     <Content Include="default.aspx" />
     <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
-    <Content Include="listing-details.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +101,7 @@
     <Compile Include="create-account.aspx.designer.cs">
       <DependentUpon>create-account.aspx</DependentUpon>
     </Compile>
+    <Compile Include="System_Classes\DatabaseHandler.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,6 +124,13 @@
       <DependentUpon>listing-details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\Client.cs" />
+    <Compile Include="System_Classes\Farm.cs" />
+    <Compile Include="System_Classes\Listed_Produce.cs" />
+    <Compile Include="System_Classes\Order.cs" />
+    <Compile Include="System_Classes\Produce.cs" />
+    <Compile Include="System_Classes\Unit_of_Measure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
