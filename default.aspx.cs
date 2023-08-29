@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace CMPG223_Group_13
 {
     public partial class _default : System.Web.UI.Page
     {
         //fields
-        static char login_type; // C or F depending on login type. Is static to allow other forms to access it easier if needed
-        string username;
+        public static string login_type; // Client or Farmer depending on login type. Is static to allow other forms to access it easier if needed
+        string email;
         string password;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +25,25 @@ namespace CMPG223_Group_13
             //check if a radiobutton is selected
             if(rbtnClient.Checked || rbtnFarmer.Checked)
             {
+                //find login type
+                if(rbtnClient.Checked)
+                {
+                    login_type = "Client";
+                }
+                else if(rbtnFarmer.Checked)
+                {
+                    login_type = "Farmer";
+                }
 
+                //grab input
+                tbEmail.Text = email;
+                tbPassword.Text = password;
+
+                //check if inputted info is correct
+                if(DatabaseHandler.verifyUserInfo(login_type, email, password))
+                {
+
+                }
             }
             else
             {

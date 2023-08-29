@@ -41,9 +41,9 @@
         <div style="text-align: center">
             <h1>Login</h1>
             <div class="box">
-                Username:<br />
-&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Username required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
-&nbsp;<asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
+                Email:<br />
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+&nbsp;<asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
                 <br />
                 Password:<br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPassword" ErrorMessage="Password required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
