@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAccount.aspx.cs" Inherits="CMPG223_Group_13.createAccount" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="create-account.aspx.cs" Inherits="CMPG223_Group_13.createAccount" %>
 <link href="general.css" rel="stylesheet" type="text/css" />
 <!DOCTYPE html>
 
