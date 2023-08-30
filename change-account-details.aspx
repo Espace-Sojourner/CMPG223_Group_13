@@ -18,7 +18,7 @@
                 <div>Phone number: <asp:TextBox ID="tbPhone" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <div class="right-aligned-sub-box">               
-                <div><asp:Button ID="btnConfirm" runat="server" Text="Confirm"/></div>
+                <div><asp:Button ID="btnConfirm" runat="server" Text="Confirm" OnClick="btnConfirm_Click"/></div>
             </div>
 
         </div>
