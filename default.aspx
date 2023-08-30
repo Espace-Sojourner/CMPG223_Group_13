@@ -5,46 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 411px;
-        }
-        .auto-style2 {
-            width: 411px;
-            height: 26px;
-        }
-        .auto-style3 {
-            height: 26px;
-        }
-        .auto-style4 {
-            width: 182px;
-        }
-        .auto-style5 {
-            height: 26px;
-            width: 182px;
-        }
-        .auto-style6 {
-            width: 411px;
-            height: 20px;
-        }
-        .auto-style7 {
-            height: 20px;
-            width: 182px;
-        }
-        .auto-style8 {
-            height: 20px;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="box">
             <h1>Login</h1>
             <div class="box">
-                Email:<br />
-&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
-&nbsp;<asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
-                <br />
+                <div>
+                    Email:<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
+                </div>
                 Password:<br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbPassword" ErrorMessage="Password required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
 &nbsp;<asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>           
