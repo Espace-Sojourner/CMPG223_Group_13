@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\DatabaseHandler.cs" />
     <Compile Include="System_Classes\User.cs" />
     <Compile Include="System_Classes\Farm.cs" />
     <Compile Include="System_Classes\Listed_Produce.cs" />
