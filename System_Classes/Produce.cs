@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -86,9 +87,34 @@ namespace CMPG223_Group_13
             }
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Produce produce = RowToFarmer(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Produce object from DataRow
         public static Produce RowToData(DataRow Row)
         {
             return new Produce((int)Row["Produce_ID"], Row["Produce_Name"].ToString(), Row["Description"].ToString(), Row["Image_Link"].ToString(), (int)Row["UOM_ID"]);
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Produce produce = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Produce object from GridViewRow
+        public static Produce RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
     }
 }

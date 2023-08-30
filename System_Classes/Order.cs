@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -89,9 +90,34 @@ namespace CMPG223_Group_13
             }
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Order order = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Order object from DataRow
         public static Order RowToData(DataRow Row)
         {
             return new Order((int)Row["Order_ID"], (int)Row["Client_ID"], (int)Row["LP_ID"], (DateTime)Row["Order_Date"], (double)Row["Order_Price"], (int)Row["Bought_Quantity"]);
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Order order = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Order object from GridViewRow
+        public static Order RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
     }
 }

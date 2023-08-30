@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -88,9 +89,34 @@ namespace CMPG223_Group_13
             }
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Listed_Produce lp = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Listed_Produce object from DataRow
         public static Listed_Produce RowToData(DataRow Row)
         {
             return new Listed_Produce((int)Row["LP_ID"], (int)Row["Farmer_ID"], (int)Row["Produce_ID"], (double)Row["Price"], (int)Row["Available_Quantity"], (DateTime)Row["Expiration_Dates"]);
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Listed_Produce lp = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Listed_Produce object from GridViewRow
+        public static Listed_Produce RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
     }
 }

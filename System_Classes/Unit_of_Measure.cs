@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -81,9 +82,34 @@ namespace CMPG223_Group_13
             }
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Unit_of_Measure uom = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Unit_of_Measure object from DataRow
         public static Unit_of_Measure RowToData(DataRow Row)
         {
             return new Unit_of_Measure((int)Row["UOM_ID"], Row["UOM_Name"].ToString(), Row["Abbreviation"].ToString());
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Unit_of_Measure uom = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Unit_of_Measure object from GridViewRow
+        public static Unit_of_Measure RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);        
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -89,9 +90,34 @@ namespace CMPG223_Group_13
             }
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Bank_Account_Info bao = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Bank_Account_Info object from DataRow
         public static Bank_Account_Info RowToData(DataRow Row)
         {
             return new Bank_Account_Info((int)Row["Bank_Account_ID"], (int)Row["Farmer_ID"], (int)Row["User_ID"], Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Bank_Account_Info bao = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Bank_Account_Info object from GridViewRow
+        public static Bank_Account_Info RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
 
     }
