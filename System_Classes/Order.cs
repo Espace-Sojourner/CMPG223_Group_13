@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMPG223_Group_13
 {
-    class Order
+    public class Order
     {
         public int Order_ID { get; set; }
         public int Client_ID { get; set; }

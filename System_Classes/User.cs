@@ -8,6 +8,24 @@ using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
+
+    /*
+     * USAGE
+     * 
+     *  if (user.UserType == UserType.Client)
+     *  if (user.UserType == UserType.Admin)
+     *  if (user.UserType == UserType.Farmer)
+     *  
+     *  
+     *  user.UserType.toString() can be used to get the user type as a string
+     *  
+     *  
+     *  1) string strType = "Farmer";
+     *  
+     *  //Getting UserType from string can be done by casting string as UserType
+     *  2) UserType ut = (UserType)strType;
+     *  
+     */
     public enum UserType
     {
         Client,
@@ -101,7 +119,7 @@ namespace CMPG223_Group_13
 
         public static User getFarmerByID(int ID)
         {
-            string sql = $"SELECT * FROM Client WHERE Farmer_ID = {ID}";
+            string sql = $"SELECT * FROM Farmer WHERE Farmer_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0) return null;
             else return RowToFarmer(dt.Rows[0]);
@@ -128,6 +146,17 @@ namespace CMPG223_Group_13
             return new User((int)Row["Farmer_ID"], UserType.Farmer, Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), null, Row["Password"].ToString());
         }
 
+        /*
+         * USAGE
+         * 
+         * 1) User client = User.RowToClient(gv.SelectedRow);
+         * 2) User farmer = User.RowToFarmer(gv.SelectedRow);
+         * 
+         */
+
+        //Methods can be called directly from the User class e.g User.Insert(userObject)
+
+        #region Client DB Methods
         public static void insertClient(User client)
         {
             if (clientExists(client))
@@ -164,6 +193,22 @@ namespace CMPG223_Group_13
             }
         }
 
+        public static void deleteClient(User client)
+        {
+            if (clientExists(client))
+            {
+                string sql = $"DELETE FROM Client WHERE Client_ID = '{client.User_ID}'";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+        #endregion Client DB Methods
+
+        #region Farmer DB Methods
         public static void insertFarmer(User farmer)
         {
             if (farmerExists(farmer))
@@ -211,19 +256,6 @@ namespace CMPG223_Group_13
 
             }
         }
-        public static void deleteClient(User client)
-        {
-            if (clientExists(client))
-            {
-                string sql = $"DELETE FROM Client WHERE Client_ID = '{client.User_ID}'";
-                DatabaseHandler.executeDelete(sql);
-            }
-            else
-            {
-                //Error Handling
-
-            }
-        }
-
+        #endregion Farmer DB Methods
     }
 }
