@@ -14,7 +14,7 @@
                 <div>
                     Email: <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>   
                 </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEmail" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
                 <div>
                     Password: <asp:TextBox ID="tbPassword" runat="server"></asp:TextBox>  
                 </div>
