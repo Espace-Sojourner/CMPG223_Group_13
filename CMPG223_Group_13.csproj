@@ -76,6 +76,7 @@
     <Content Include="create-account.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
     <Content Include="listing-details.aspx" />
     <Content Include="Web.config" />
