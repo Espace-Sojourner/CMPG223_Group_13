@@ -28,7 +28,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Produce_ID WHERE Produce_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Produce((int)dt.Rows[0]["Produce_ID"], dt.Rows[0]["Produce_Name"].ToString(), dt.Rows[0]["Description"].ToString(), dt.Rows[0]["Image_Link"].ToString(), (int)dt.Rows[0]["UOM_ID"]);
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);    
         }
 
         public static bool Exists(Produce produce)
@@ -60,7 +61,8 @@ namespace CMPG223_Group_13
                     $"Produce_Name = '{produce.Produce_Name}', " +
                     $"Description = '{produce.Description}', " +
                     $"Image_Link = '{produce.Image_Link}', " +
-                    $"UOM_ID = {produce.UOM_ID}";
+                    $"UOM_ID = {produce.UOM_ID} " +
+                    $"WHERE Produce_ID = {produce.Produce_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -68,6 +70,25 @@ namespace CMPG223_Group_13
                 //Error Handling
 
             }
+        }
+
+        public static void deleteFromDB(Produce produce)
+        {
+            if (Exists(produce))
+            {
+                string sql = $"DELETE FROM Produce WHERE Produce_ID = {produce.Produce_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static Produce RowToData(DataRow Row)
+        {
+            return new Produce((int)Row["Produce_ID"], Row["Produce_Name"].ToString(), Row["Description"].ToString(), Row["Image_Link"].ToString(), (int)Row["UOM_ID"]);
         }
     }
 }

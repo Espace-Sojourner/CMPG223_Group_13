@@ -30,7 +30,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Order_ID WHERE Order_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Order((int)dt.Rows[0]["Order_ID"], (int)dt.Rows[0]["Client_ID"], (int)dt.Rows[0]["LP_ID"], (DateTime)dt.Rows[0]["Order_Date"], (double)dt.Rows[0]["Order_Price"], (int)dt.Rows[0]["Bought_Quantity"]);
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);
         }
 
         public static bool Exists(Order order)
@@ -63,7 +64,8 @@ namespace CMPG223_Group_13
                     $"LP_ID = {order.LP_ID}, " +
                     $"Order_Date = '{order.Order_ID}' " +
                     $"Order_Price = {order.Order_Price}" +
-                    $"Bought_Quantity = {order.Bought_Quantity}";
+                    $"Bought_Quantity = {order.Bought_Quantity} " +
+                    $"WHERE Order_ID = {order.Order_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -71,6 +73,25 @@ namespace CMPG223_Group_13
                 //Error Handling
 
             }
+        }
+
+        public static void deleteFromDB(Order order)
+        {
+            if (Exists(order))
+            {
+                string sql = $"DELETE FROM Order WHERE Order_ID = {order.Order_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static Order RowToData(DataRow Row)
+        {
+            return new Order((int)Row["Order_ID"], (int)Row["Client_ID"], (int)Row["LP_ID"], (DateTime)Row["Order_Date"], (double)Row["Order_Price"], (int)Row["Bought_Quantity"]);
         }
     }
 }

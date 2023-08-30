@@ -15,15 +15,15 @@ namespace CMPG223_Group_13
          * set methods - instead of "Object.setBank_Account_ID(value)" only use "Object.Bank_Account_ID = value"
         */
         public int Bank_Account_ID { get; set; }
-        public int User_ID { get; set; }
+        public int Client_ID { get; set; }
         public int Farmer_ID { get; set; }
         public string Bank_Name { get; set; }
         public string Account_Number { get; set; }
-        public Bank_Account_Info(int Bank_Account_ID,int Farmer_ID , int User_ID, string Bank_Name, string Account_Number)
+        public Bank_Account_Info(int Bank_Account_ID,int Farmer_ID , int Client_ID, string Bank_Name, string Account_Number)
         {
             this.Bank_Account_ID = Bank_Account_ID;
             this.Farmer_ID = Farmer_ID;
-            this.User_ID = User_ID;
+            this.Client_ID = Client_ID;
             this.Bank_Name = Bank_Name;
             this.Account_Number = Account_Number;
         }
@@ -33,6 +33,65 @@ namespace CMPG223_Group_13
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Bank_Account_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             return new Bank_Account_Info((int)dt.Rows[0]["Bank_Account_ID"], (int)dt.Rows[0]["Farmer_ID"], (int)dt.Rows[0]["User_ID"], dt.Rows[0]["Bank_Name"].ToString(), dt.Rows[0]["Account_Number"].ToString());
+        }
+
+        public static bool Exists(Bank_Account_Info info)
+        {
+            if (getByID(info.Bank_Account_ID) == null) return false;
+            else return true;
+        }
+
+        public static void insertIntoDB(Bank_Account_Info info)
+        {
+            if (Exists(info))
+            {
+                //Error Handling
+
+            }
+            else
+            {
+                string sql = $"INSERT INTO Bank_Account_Info (Bank_Account_ID, Farmer_ID, Client_ID, Bank_name, Account_Number) " +
+                    $"VALUES ({info.Bank_Account_ID}, {info.Farmer_ID}, {info.Client_ID}, '{info.Bank_Name}', '{info.Account_Number}')";
+                DatabaseHandler.executeInsert(sql);
+            }
+        }
+
+        public static void updateInDB(Bank_Account_Info info)
+        {
+            if (Exists(info))
+            {
+                string sql = $"UPDATE Bank_Account_Info SET " +
+                    $"Farmer_ID = {info.Farmer_ID}, " +
+                    $"Client_ID = {info.Client_ID}, " +
+                    $"Bank_name = '{info.Bank_Name}' " +
+                    $"Account_Number = '{info.Account_Number}' " +
+                    $"WHERE Bank_Account_ID = {info.Bank_Account_ID}";
+                DatabaseHandler.executeUpdate(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static void deleteFromDB(Bank_Account_Info info)
+        {
+            if (Exists(info))
+            {
+                string sql = $"DELETE FROM Bank_Account_Info WHERE Bank_Account_ID = {info.Bank_Account_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static Bank_Account_Info RowToData(DataRow Row)
+        {
+            return new Bank_Account_Info((int)Row["Bank_Account_ID"], (int)Row["Farmer_ID"], (int)Row["User_ID"], Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
         }
 
     }

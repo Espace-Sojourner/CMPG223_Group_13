@@ -154,7 +154,7 @@ namespace CMPG223_Group_13
          * 
          */
 
-        //Methods can be called directly from the User class e.g User.Insert(userObject)
+        //These methods can be called directly from the User class e.g User.Insert(userObject)
 
         #region Client DB Methods
         public static void insertClient(User client)
@@ -183,7 +183,8 @@ namespace CMPG223_Group_13
                     $"Email_Address = '{client.Email_Address}', " +
                     $"Phone_Number = '{client.Phone_Number}', " +
                     $"Shipping_Address = '{client.Shipping_Address}', " +
-                    $"Password = '{client.User_Password}')";
+                    $"Password = '{client.User_Password}') " +
+                    $"WHERE Client_ID = {client.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -197,7 +198,7 @@ namespace CMPG223_Group_13
         {
             if (clientExists(client))
             {
-                string sql = $"DELETE FROM Client WHERE Client_ID = '{client.User_ID}'";
+                string sql = $"DELETE FROM Client WHERE Client_ID = {client.User_ID}";
                 DatabaseHandler.executeDelete(sql);
             }
             else
@@ -233,7 +234,8 @@ namespace CMPG223_Group_13
                     $"Last_Name = '{farmer.Last_Name}', " +
                     $"Email_Address = '{farmer.Email_Address}', " +
                     $"Phone_Number = '{farmer.Phone_Number}', " +
-                    $"Password = '{farmer.User_Password}')";
+                    $"Password = '{farmer.User_Password}')" +
+                    $"WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -247,7 +249,7 @@ namespace CMPG223_Group_13
         {
             if (farmerExists(farmer))
             {
-                string sql = $"DELETE FROM Client WHERE Client_ID = '{farmer.User_ID}'";
+                string sql = $"DELETE FROM Farmer WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeDelete(sql);
             }
             else

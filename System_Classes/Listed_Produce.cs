@@ -29,7 +29,68 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM LP_ID WHERE LP_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Listed_Produce((int)dt.Rows[0]["LP_ID"], (int)dt.Rows[0]["Farmer_ID"], (int)dt.Rows[0]["Produce_ID"], (double)dt.Rows[0]["Price"], (int)dt.Rows[0]["Available_Quantity"], (DateTime)dt.Rows[0]["Expiration_Dates"]);
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);
+        }
+
+        public static bool Exists(Listed_Produce lp)
+        {
+            if (getByID(lp.LP_ID) == null) return false;
+            else return true;
+        }
+
+        public static void insertIntoDB(Listed_Produce lp)
+        {
+            if (Exists(lp))
+            {
+                //Error Handling
+
+            }
+            else
+            {
+                string sql = $"INSERT INTO Listed_Produce (LP_ID, Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) " +
+                    $"VALUES ({lp.LP_ID}, {lp.Farmer_ID}, {lp.Produce_ID}, {lp.Price}, {lp.Available_Quantity}, '{lp.Expiration_Dates}')";
+                DatabaseHandler.executeInsert(sql);
+            }
+        }
+
+        public static void updateInDB(Listed_Produce lp)
+        {
+            if (Exists(lp))
+            {
+                string sql = $"UPDATE Listed_Produce SET " +
+                    $"Farmer_ID = {lp.Farmer_ID}, " +
+                    $"Produce_ID = {lp.Produce_ID}, " +
+                    $"Price = {lp.Price} " +
+                    $"Available_Quantity = {lp.Available_Quantity}" +
+                    $"Expiration_Dates = '{lp.Expiration_Dates}' " +
+                    $"WHERE LP_ID = {lp.LP_ID}";
+                DatabaseHandler.executeUpdate(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static void deleteFromDB(Listed_Produce lp)
+        {
+            if (Exists(lp))
+            {
+                string sql = $"DELETE FROM Listed_Produce WHERE LP_ID = {lp.LP_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static Listed_Produce RowToData(DataRow Row)
+        {
+            return new Listed_Produce((int)Row["LP_ID"], (int)Row["Farmer_ID"], (int)Row["Produce_ID"], (double)Row["Price"], (int)Row["Available_Quantity"], (DateTime)Row["Expiration_Dates"]);
         }
     }
 }
