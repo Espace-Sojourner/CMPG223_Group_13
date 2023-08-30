@@ -62,19 +62,20 @@ namespace CMPG223_Group_13
             User updated = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,user.Shipping_Address,user.User_Password);
 
             //update user
-            switch(user.UserType)
+            switch (user.UserType)
             {
                 case UserType.Admin:
                 case UserType.Client:
-                    updateClient(updated);                    
+                    updateClient(updated);
+                    //update Session
+                    user = getClientByID(user.User_ID);
                     break;
                 case UserType.Farmer:
                     updateFarmer(updated);
+                    //update Session
+                    user = getFarmerByID(user.User_ID);
                     break;
             }
-
-            //set Session
-            Session["User"] = updated;
         }
     }
 }
