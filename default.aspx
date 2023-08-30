@@ -42,7 +42,7 @@
             <h1>Login</h1>
             <div class="box">
                 Email:<br />
-&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbUsername" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
+&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEmail" ErrorMessage="Email required" ForeColor="#FF0066"></asp:RequiredFieldValidator>
 &nbsp;<asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
                 <br />
                 Password:<br />
