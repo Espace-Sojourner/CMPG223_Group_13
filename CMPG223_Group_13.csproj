@@ -67,10 +67,77 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Databases.mdf" />
+    <Content Include="App_Data\Databases_log.ldf">
+      <DependentUpon>Databases.mdf</DependentUpon>
+    </Content>
+    <Content Include="browse-produce.aspx" />
+    <Content Include="change-account-details.aspx" />
+    <Content Include="create-account.aspx" />
+    <Content Include="dashboard.aspx" />
+    <Content Include="default.aspx" />
+    <Content Include="list-produce.aspx" />
+    <Content Include="listing-details.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="browse-produce.aspx.cs">
+      <DependentUpon>browse-produce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="browse-produce.aspx.designer.cs">
+      <DependentUpon>browse-produce.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="change-account-details.aspx.cs">
+      <DependentUpon>change-account-details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="change-account-details.aspx.designer.cs">
+      <DependentUpon>change-account-details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="create-account.aspx.cs">
+      <DependentUpon>create-account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="create-account.aspx.designer.cs">
+      <DependentUpon>create-account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="list-produce.aspx.cs">
+      <DependentUpon>list-produce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="list-produce.aspx.designer.cs">
+      <DependentUpon>list-produce.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listing-details.aspx.cs">
+      <DependentUpon>listing-details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listing-details.aspx.designer.cs">
+      <DependentUpon>listing-details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\User.cs" />
+    <Compile Include="System_Classes\Farm.cs" />
+    <Compile Include="System_Classes\Listed_Produce.cs" />
+    <Compile Include="System_Classes\Order.cs" />
+    <Compile Include="System_Classes\Produce.cs" />
+    <Compile Include="System_Classes\Unit_of_Measure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
