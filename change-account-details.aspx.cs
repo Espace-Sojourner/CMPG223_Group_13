@@ -14,13 +14,17 @@ namespace CMPG223_Group_13
         User user;
         Bank_Account_Info bank;
         Farm farm;
-        private bool isFarmer = false;
+        private bool isFarmer = false, isAdmin = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             // get all user details
             user = getSessionUser();
-            bank = Bank_Account_Info.getByID(user.User_ID);
+            if (user.UserType != UserType.Admin)
+            {
+                isAdmin = false;
+                bank = Bank_Account_Info.getByID(user.User_ID);
+            }
             if (user.UserType == UserType.Farmer)
             {
                 isFarmer = true;
@@ -50,8 +54,8 @@ namespace CMPG223_Group_13
             // PENDING: tbPassword.text = user.User_Password;
 
             // bank info
-            // PENDING: tbBankName.text = bank.Bank_Name;
-            // PENDING: tbAccNumber.text = bank.Account_Number;
+            // PENDING: tbBankName.text = (isAdmin) ? "N/A" : bank.Bank_Name;
+            // PENDING: tbAccNumber.text = (isAdmin) ? "N/A" : bank.Account_Number;
 
             // farm info
             // PENDING: tbfarmName.Text = (isFarmer) ? farm.Farm_Name : "N/A";
@@ -73,19 +77,18 @@ namespace CMPG223_Group_13
             // bank info
             string bankName = "", //PENDING: tbBankName.text
                 accNumber = ""; //PENDING: tbAccNumber.text
-            // farm info - will be "N/A" if not farmer
+            // farm info 
             string farmName = "", //PENDING: tbFarmName.text
                 farmAddress = ""; //PENDING: tbFarmAddress.text
 
-            // create updated objects
+            // create new user
             User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,password);
-            Bank_Account_Info newBank = new Bank_Account_Info(bank.Bank_Account_ID, (isFarmer) ? user.User_ID : -1, (isFarmer) ? -1 : user.User_ID,bankName,accNumber); // adapt bank class 
-            Farm newFarm = (isFarmer) ? new Farm(farm.Farm_ID,user.User_ID,farmName,farmAddress) : null;
 
             if (isFarmer)
             {
                 updateFarmer(newUser);
-                // PENDING: Farm.updateFarm(newFarm);
+                Farm newFarm = new Farm(farm.Farm_ID, user.User_ID, farmName, farmAddress);                
+                Farm.updateInDB(newFarm);
                 user = getFarmerByID(user.User_ID); // update Session
             }
             else
@@ -94,7 +97,11 @@ namespace CMPG223_Group_13
                 user = getClientByID(user.User_ID); // update Session
             }
 
-            // PENDING: if (user.UserType != UserType.Admin) Bank_Account_Info.updateBank(newBank);
+            if (!isAdmin)
+            {
+                Bank_Account_Info newBank = new Bank_Account_Info(bank.Bank_Account_ID, (isFarmer) ? user.User_ID : -1, (isFarmer) ? -1 : user.User_ID, bankName, accNumber);
+                Bank_Account_Info.updateInDB(newBank);
+            }
 
             // send to dashboard
             Response.Redirect("~/dashboard.aspx");
