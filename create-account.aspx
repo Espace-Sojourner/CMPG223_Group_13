@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAccount.aspx.cs" Inherits="CMPG223_Group_13.createAccount" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="create-account.aspx.cs" Inherits="CMPG223_Group_13.createAccount" %>
 <link href="general.css" rel="stylesheet" type="text/css" />
 <!DOCTYPE html>
 
@@ -13,8 +13,9 @@
             <h2>Account details</h2>
             <div class="right-aligned-sub-box">  
                 <div>Username: <asp:TextBox ID="tbUsername" runat="server" Width="150px"></asp:TextBox></div>
-                <div>Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px"></asp:TextBox></div>
-                <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px" TextMode="Password"></asp:TextBox></div>
+                <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px" TextMode="Password"></asp:TextBox></div>
+                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="The passwords don't match" ControlToCompare="tbPassword" ControlToValidate="tbConfirmPassword"></asp:CompareValidator>
             </div>
             <h2>Personal details</h2>
             <div class="right-aligned-sub-box">
@@ -26,7 +27,20 @@
             <h2>Account type</h2>
             <div class="right-aligned-sub-box">               
                 <div><asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" /></div>
-                <div>Farm name: <asp:TextBox ID="tbFarmName" runat="server" Visible="False" Width="150px"></asp:TextBox></div>
+            </div>
+             <h2>Shipping</h2>
+            <div class="right-aligned-sub-box">
+                <div>Shipping Address: <asp:TextBox ID="tbShippingAddress" runat="server" Width="150px"></asp:TextBox></div>
+            </div>
+            <h2>Billing</h2>
+            <div class="right-aligned-sub-box">
+                <div>Bank: <asp:TextBox ID="tbBankName" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Account number: <asp:TextBox ID="tbAccountNumber" runat="server" Width="150px"></asp:TextBox></div>
+            </div>
+            <h2>Farm details</h2>
+            <div class="right-aligned-sub-box">
+                <div>Farm name: <asp:TextBox ID="tbFarmName" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Farm address: <asp:TextBox ID="tbFarmAddress" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <div class="right-aligned-sub-box">               
                 <div><asp:Button ID="btnCreate" runat="server" Text="Create Account" /></div>

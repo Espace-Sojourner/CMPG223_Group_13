@@ -11,7 +11,7 @@ namespace CMPG223_Group_13
 {
 
 
-    public partial class browseProduce
+    public partial class dashboard
     {
 
         /// <summary>
@@ -24,21 +24,39 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// tbSubSearch control.
+        /// btnBrowse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSubSearch;
+        protected global::System.Web.UI.WebControls.Button btnBrowse;
 
         /// <summary>
-        /// gvProduce control.
+        /// btnManageListings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProduce;
+        protected global::System.Web.UI.WebControls.Button btnManageListings;
+
+        /// <summary>
+        /// btnAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAccount;
+
+        /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogout;
     }
 }

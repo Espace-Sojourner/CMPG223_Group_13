@@ -75,6 +75,7 @@
     <Content Include="browse-produce.aspx" />
     <Content Include="change-account-details.aspx" />
     <Content Include="create-account.aspx" />
+    <Content Include="dashboard.aspx" />
     <Content Include="default.aspx" />
     <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
@@ -102,6 +103,13 @@
     </Compile>
     <Compile Include="create-account.aspx.designer.cs">
       <DependentUpon>create-account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

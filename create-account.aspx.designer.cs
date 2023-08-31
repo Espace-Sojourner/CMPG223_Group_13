@@ -51,6 +51,15 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.WebControls.TextBox tbConfirmPassword;
 
         /// <summary>
+        /// CompareValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+
+        /// <summary>
         /// tbFirstname control.
         /// </summary>
         /// <remarks>
@@ -96,6 +105,33 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.WebControls.CheckBox cbFarmerAccount;
 
         /// <summary>
+        /// tbShippingAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbShippingAddress;
+
+        /// <summary>
+        /// tbBankName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbBankName;
+
+        /// <summary>
+        /// tbAccountNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbAccountNumber;
+
+        /// <summary>
         /// tbFarmName control.
         /// </summary>
         /// <remarks>
@@ -103,6 +139,15 @@ namespace CMPG223_Group_13
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbFarmName;
+
+        /// <summary>
+        /// tbFarmAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFarmAddress;
 
         /// <summary>
         /// btnCreate control.
