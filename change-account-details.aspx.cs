@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
@@ -50,40 +52,43 @@ namespace CMPG223_Group_13
             tbLastname.Text = user.Last_Name;
             tbEmail.Text = user.Email_Address;
             tbPhone.Text = user.Phone_Number;
-            // PENDING: tbAddress.text = user.Shipping_Address;
-            // PENDING: tbPassword.text = user.User_Password;
+            tbShippingAddress.Text = user.Shipping_Address;
 
             // bank info
-            // PENDING: tbBankName.text = (isAdmin) ? "N/A" : bank.Bank_Name;
-            // PENDING: tbAccNumber.text = (isAdmin) ? "N/A" : bank.Account_Number;
+            tbBankName.Text = (isAdmin) ? "N/A" : bank.Bank_Name;
+            tbAccountNumber.Text = (isAdmin) ? "N/A" : bank.Account_Number;
 
             // farm info
-            // PENDING: tbfarmName.Text = (isFarmer) ? farm.Farm_Name : "N/A";
-            // PENDING: tbfarmAddress.Text = (isFarmer) ? farm.Farm_Address : "N/A";
+            tbFarmName.Text = (isFarmer) ? farm.Farm_Name : "N/A";
+            tbFarmAddress.Text = (isFarmer) ? farm.Farm_Address : "N/A";
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            // TODO: add required input controls & validation controls
-
             // --- entries ---
             // user details
             string firstName = tbFirstname.Text,
                 lastName = tbLastname.Text,
                 email = tbEmail.Text,
                 phone = tbPhone.Text,
-                address = "", //PENDING: tbAddress.text
-                password = ""; //PENDING: tbPassword.text
+                address = tbShippingAddress.Text,
+                oldPassword = tbOldPassword.Text;
+
+            // validate old password
+            string cmd = $"select * from {user.UserType} where Email_Address = {user.Email_Address} and Password = {oldPassword}";
+            DataTable dt = DatabaseHandler.executeSelectToDT(cmd);
+            // create new password
+            string newPassword = (dt.Rows.Count != 0) ? tbNewPassword.Text : user.User_Password;
+
             // bank info
-            string bankName = "", //PENDING: tbBankName.text
-                accNumber = ""; //PENDING: tbAccNumber.text
+            string bankName = tbBankName.Text, accNumber = tbAccountNumber.Text;
             // farm info 
-            string farmName = "", //PENDING: tbFarmName.text
-                farmAddress = ""; //PENDING: tbFarmAddress.text
+            string farmName = tbFarmName.Text, farmAddress = tbFarmAddress.Text;
 
             // create new user
-            User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,password);
+            User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,newPassword);
 
+            //update user
             if (isFarmer)
             {
                 updateFarmer(newUser);
@@ -97,6 +102,7 @@ namespace CMPG223_Group_13
                 user = getClientByID(user.User_ID); // update Session
             }
 
+            // update bank if applicable
             if (!isAdmin)
             {
                 Bank_Account_Info newBank = new Bank_Account_Info(bank.Bank_Account_ID, (isFarmer) ? user.User_ID : -1, (isFarmer) ? -1 : user.User_ID, bankName, accNumber);
