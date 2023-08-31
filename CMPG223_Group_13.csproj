@@ -103,7 +103,6 @@
     <Compile Include="create-account.aspx.designer.cs">
       <DependentUpon>create-account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="System_Classes\DatabaseHandler.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
