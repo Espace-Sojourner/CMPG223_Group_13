@@ -49,8 +49,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Listed_Produce (LP_ID, Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) " +
-                    $"VALUES ({lp.LP_ID}, {lp.Farmer_ID}, {lp.Produce_ID}, {lp.Price}, {lp.Available_Quantity}, '{lp.Expiration_Dates}')";
+                string sql = $"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) " +
+                    $"VALUES ({lp.Farmer_ID}, {lp.Produce_ID}, {lp.Price}, {lp.Available_Quantity}, '{lp.Expiration_Dates}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }

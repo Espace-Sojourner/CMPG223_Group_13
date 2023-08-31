@@ -50,8 +50,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Order (Order_ID, Client_ID, LP_ID, Order_Date, Order_Price, Bought_Quantity) " +
-                    $"VALUES ({order.Order_ID}, {order.Client_ID}, {order.LP_ID}, '{order.Order_Date}', {order.Order_Price}, {order.Bought_Quantity})";
+                string sql = $"INSERT INTO Order (Client_ID, LP_ID, Order_Date, Order_Price, Bought_Quantity) " +
+                    $"VALUES ({order.Client_ID}, {order.LP_ID}, '{order.Order_Date}', {order.Order_Price}, {order.Bought_Quantity})";
                 DatabaseHandler.executeInsert(sql);
             }
         }

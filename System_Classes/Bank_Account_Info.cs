@@ -51,8 +51,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Bank_Account_Info (Bank_Account_ID, Farmer_ID, Client_ID, Bank_name, Account_Number) " +
-                    $"VALUES ({info.Bank_Account_ID}, {(info.Farmer_ID == -1 ? null : info.Farmer_ID)}, {(info.Client_ID == -1 ? null : info.Client_ID)}, '{info.Bank_Name}', '{info.Account_Number}')";
+                string sql = $"INSERT INTO Bank_Account_Info (Farmer_ID, Client_ID, Bank_name, Account_Number) " +
+                    $"VALUES ({(info.Farmer_ID == -1 ? null : info.Farmer_ID)}, {(info.Client_ID == -1 ? null : info.Client_ID)}, '{info.Bank_Name}', '{info.Account_Number}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }

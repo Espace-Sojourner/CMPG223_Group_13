@@ -48,8 +48,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Produce (Produce_ID, Produce_Name, Description, Image_Link, UOM_ID) " +
-                    $"VALUES ({produce.Produce_ID}, '{produce.Produce_Name}', '{produce.Description}', '{produce.Image_Link}', {produce.UOM_ID})";
+                string sql = $"INSERT INTO Produce (Produce_Name, Description, Image_Link, UOM_ID) " +
+                    $"VALUES ('{produce.Produce_Name}', '{produce.Description}', '{produce.Image_Link}', {produce.UOM_ID})";
                 DatabaseHandler.executeInsert(sql);
             }
         }

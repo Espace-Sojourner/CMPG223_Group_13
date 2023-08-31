@@ -45,8 +45,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Farm (Farm_ID, Farmer_ID, Farm_Name, Farm_Address) " +
-                    $"VALUES ({farm.Farm_ID}, {farm.Farmer_ID}, '{farm.Farm_Name}', '{farm.Farm_Address}')";
+                string sql = $"INSERT INTO Farm (Farmer_ID, Farm_Name, Farm_Address) " +
+                    $"VALUES ({farm.Farmer_ID}, '{farm.Farm_Name}', '{farm.Farm_Address}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }

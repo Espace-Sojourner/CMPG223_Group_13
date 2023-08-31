@@ -45,8 +45,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Unit_Of_Measure (UOM_ID, UOM_Name, Abbreviation) " +
-                    $"VALUES ({uom.UOM_ID}, '{uom.UOM_Name}', '{uom.Abbreviation}')";
+                string sql = $"INSERT INTO Unit_Of_Measure (UOM_Name, Abbreviation) " +
+                    $"VALUES ('{uom.UOM_Name}', '{uom.Abbreviation}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }

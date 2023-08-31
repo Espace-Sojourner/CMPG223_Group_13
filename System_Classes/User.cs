@@ -212,8 +212,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Client (Client_ID, Client_Type, First_Name, Last_Name, Email_Address, Phone_Number, Shipping_Address, Password) " +
-                    $"VALUES ({client.User_ID}, '{client.UserType}', '{client.First_Name}', '{client.Last_Name}', '{client.Email_Address}', '{client.Phone_Number}', '{client.Shipping_Address}', '{client.User_Password}')";
+                string sql = $"INSERT INTO Client (Client_Type, First_Name, Last_Name, Email_Address, Phone_Number, Shipping_Address, Password) " +
+                    $"VALUES ('{client.UserType}', '{client.First_Name}', '{client.Last_Name}', '{client.Email_Address}', '{client.Phone_Number}', '{client.Shipping_Address}', '{client.User_Password}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -265,8 +265,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Farmer (Farmer_ID, First_Name, Last_Name, Email_Address, Phone_Number, Password) " +
-                    $"VALUES ({farmer.User_ID}, '{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Phone_Number}', '{farmer.Shipping_Address}', '{farmer.User_Password}')";
+                string sql = $"INSERT INTO Farmer (First_Name, Last_Name, Email_Address, Phone_Number, Password) " +
+                    $"VALUES ('{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Phone_Number}', '{farmer.Shipping_Address}', '{farmer.User_Password}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
