@@ -23,7 +23,7 @@
                 <div><asp:Label ID="lblOldPassword" runat="server" Text="Old Password: " Visible="False"></asp:Label><asp:TextBox ID="tbOldPassword" runat="server" Width="150px" TextMode="Password" Wrap="True" Visible="False"></asp:TextBox></div>
                 <div><asp:Label ID="lblNewPassword" runat="server" Text="New Password: " Visible="False"></asp:Label><asp:TextBox ID="tbNewPassword" runat="server" Width="150px" TextMode="Password" Visible="False"></asp:TextBox></div>
                 <div><asp:Label ID="lblRepeatPassword" runat="server" Text="Repeat Password: " Visible="False"></asp:Label><asp:TextBox ID="tbConfirmNewPassword" runat="server" Width="150px" Visible="False" TextMode="Password"></asp:TextBox></div>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="The passwords don't match" ControlToCompare="tbPassword" ControlToValidate="tbConfirmPassword" Visible="False"></asp:CompareValidator>
+                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="The passwords don't match" ControlToCompare="tbNewPassword" ControlToValidate="tbConfirmNewPassword" Visible="False"></asp:CompareValidator>
             </div>
             <h2>Shipping</h2>
             <div class="right-aligned-sub-box">
@@ -40,7 +40,7 @@
                 <div>Farm address: <asp:TextBox ID="tbFarmAddress" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <div class="right-aligned-sub-box">               
-                <div><asp:Button ID="btnConfirm" runat="server" Text="Confirm"/></div>
+                <div><asp:Button ID="btnConfirm" runat="server" Text="Confirm" OnClick="btnConfirm_Click"/></div>
             </div>
 
         </div>
