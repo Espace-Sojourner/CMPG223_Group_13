@@ -27,7 +27,6 @@
             <h2>Account type</h2>
             <div class="right-aligned-sub-box">               
                 <div><asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" /></div>
-                <div>Farm name: <asp:TextBox ID="tbFarmName" runat="server" Visible="False" Width="150px"></asp:TextBox></div>
             </div>
              <h2>Shipping</h2>
             <div class="right-aligned-sub-box">
@@ -40,7 +39,7 @@
             </div>
             <h2>Farm details</h2>
             <div class="right-aligned-sub-box">
-                <div>Farm name: <asp:TextBox ID="TextBox1" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Farm name: <asp:TextBox ID="tbFarmName" runat="server" Width="150px"></asp:TextBox></div>
                 <div>Farm address: <asp:TextBox ID="tbFarmAddress" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <div class="right-aligned-sub-box">               

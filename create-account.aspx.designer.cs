@@ -105,15 +105,6 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.WebControls.CheckBox cbFarmerAccount;
 
         /// <summary>
-        /// tbFarmName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFarmName;
-
-        /// <summary>
         /// tbShippingAddress control.
         /// </summary>
         /// <remarks>
@@ -141,13 +132,13 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.WebControls.TextBox tbAccountNumber;
 
         /// <summary>
-        /// TextBox1 control.
+        /// tbFarmName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbFarmName;
 
         /// <summary>
         /// tbFarmAddress control.
