@@ -5,9 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace CMPG223_Group_13
 {
+
+    /*
+     * USAGE
+     * 
+     *  if (user.UserType == UserType.Client)
+     *  if (user.UserType == UserType.Admin)
+     *  if (user.UserType == UserType.Farmer)
+     *  
+     *  
+     *  user.UserType.toString() can be used to get the user type as a string
+     *  
+     *  
+     *  1) string strType = "Farmer";
+     *  
+     *  //Getting UserType from string can be done by casting string as UserType
+     *  2) UserType ut = (UserType)strType;
+     *  
+     */
     public enum UserType
     {
         Client,
@@ -83,33 +102,33 @@ namespace CMPG223_Group_13
 
         #region getUserMethods
 
-        public static User getClientByID(int ID)
+        public static User getClientByID(int clientID)
         {
-            string sql = $"SELECT * FROM Client WHERE Client_ID = {ID}";
+            string sql = $"SELECT * FROM Client WHERE Client_ID = {clientID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0) return null;
             else return RowToClient(dt.Rows[0]);
         }
 
-        public static User getClientByEmail(string Email)
+        public static User getClientByEmail(string clientEmail)
         {
-            string sql = $"SELECT * FROM Client WHERE Email_Address = {Email}";
+            string sql = $"SELECT * FROM Client WHERE Email_Address = {clientEmail}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0) return null;
             else return RowToClient(dt.Rows[0]);
         }
 
-        public static User getFarmerByID(int ID)
+        public static User getFarmerByID(int farmerID)
         {
-            string sql = $"SELECT * FROM Client WHERE Farmer_ID = {ID}";
+            string sql = $"SELECT * FROM Farmer WHERE Farmer_ID = {farmerID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0) return null;
             else return RowToFarmer(dt.Rows[0]);
         }
 
-        public static User getFarmerByEmail(string Email)
+        public static User getFarmerByEmail(string farmerEmail)
         {
-            string sql = $"SELECT * FROM Farmer WHERE Email_Address = {Email}";
+            string sql = $"SELECT * FROM Farmer WHERE Email_Address = {farmerEmail}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0)
             {
@@ -119,15 +138,71 @@ namespace CMPG223_Group_13
         }
         #endregion getUserMethods
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) User user = RowToClient(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns User object from DataRow
         public static User RowToClient(DataRow Row)
         {
             return new User((int)Row["Client_ID"], (UserType)Row["Client_Type"], Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), Row["Shipping_Address"].ToString(), Row["Password"].ToString());
         }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) User user = RowToClient(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns User object from GridViewRow
+        public static User RowToClient(GridViewRow Row)
+        {
+            return RowToClient((Row.DataItem as DataRowView).Row);        
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) User user = RowToFarmer(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns User object from DataRow
         public static User RowToFarmer(DataRow Row)
         {
             return new User((int)Row["Farmer_ID"], UserType.Farmer, Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), null, Row["Password"].ToString());
         }
 
+
+
+        /*
+         * USAGE
+         * 
+         * 1) User user = RowToFarmer(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns User object from DataRow
+        public static User RowToFarmer(GridViewRow Row)
+        {
+            return RowToFarmer((Row.DataItem as DataRowView).Row);
+        }
+
+
+
+        //These methods can be called directly from the User class e.g User.Insert(userObject)
+
+        #region Client DB Methods
         public static void insertClient(User client)
         {
             if (clientExists(client))
@@ -137,8 +212,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Client (Client_ID, Client_Type, First_Name, Last_Name, Email_Address, Phone_Number, Shipping_Address, Password) " +
-                    $"VALUES ({client.User_ID}, '{client.UserType}', '{client.First_Name}', '{client.Last_Name}', '{client.Email_Address}', '{client.Phone_Number}', '{client.Shipping_Address}', '{client.User_Password}')";
+                string sql = $"INSERT INTO Client (Client_Type, First_Name, Last_Name, Email_Address, Phone_Number, Shipping_Address, Password) " +
+                    $"VALUES ('{client.UserType}', '{client.First_Name}', '{client.Last_Name}', '{client.Email_Address}', '{client.Phone_Number}', '{client.Shipping_Address}', '{client.User_Password}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -154,7 +229,8 @@ namespace CMPG223_Group_13
                     $"Email_Address = '{client.Email_Address}', " +
                     $"Phone_Number = '{client.Phone_Number}', " +
                     $"Shipping_Address = '{client.Shipping_Address}', " +
-                    $"Password = '{client.User_Password}')";
+                    $"Password = '{client.User_Password}') " +
+                    $"WHERE Client_ID = {client.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -164,6 +240,22 @@ namespace CMPG223_Group_13
             }
         }
 
+        public static void deleteClient(User client)
+        {
+            if (clientExists(client))
+            {
+                string sql = $"DELETE FROM Client WHERE Client_ID = {client.User_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+        #endregion Client DB Methods
+
+        #region Farmer DB Methods
         public static void insertFarmer(User farmer)
         {
             if (farmerExists(farmer))
@@ -173,8 +265,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Farmer (Farmer_ID, First_Name, Last_Name, Email_Address, Phone_Number, Password) " +
-                    $"VALUES ({farmer.User_ID}, '{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Phone_Number}', '{farmer.Shipping_Address}', '{farmer.User_Password}')";
+                string sql = $"INSERT INTO Farmer (First_Name, Last_Name, Email_Address, Phone_Number, Password) " +
+                    $"VALUES ('{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Phone_Number}', '{farmer.Shipping_Address}', '{farmer.User_Password}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -188,7 +280,8 @@ namespace CMPG223_Group_13
                     $"Last_Name = '{farmer.Last_Name}', " +
                     $"Email_Address = '{farmer.Email_Address}', " +
                     $"Phone_Number = '{farmer.Phone_Number}', " +
-                    $"Password = '{farmer.User_Password}')";
+                    $"Password = '{farmer.User_Password}')" +
+                    $"WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -202,7 +295,7 @@ namespace CMPG223_Group_13
         {
             if (farmerExists(farmer))
             {
-                string sql = $"DELETE FROM Client WHERE Client_ID = '{farmer.User_ID}'";
+                string sql = $"DELETE FROM Farmer WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeDelete(sql);
             }
             else
@@ -211,19 +304,7 @@ namespace CMPG223_Group_13
 
             }
         }
-        public static void deleteClient(User client)
-        {
-            if (clientExists(client))
-            {
-                string sql = $"DELETE FROM Client WHERE Client_ID = '{client.User_ID}'";
-                DatabaseHandler.executeDelete(sql);
-            }
-            else
-            {
-                //Error Handling
-
-            }
-        }
+        #endregion Farmer DB Methods
 
     }
 }

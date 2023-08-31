@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Routing;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -24,7 +26,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM UOM_ID WHERE UOM_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Unit_of_Measure((int)dt.Rows[0]["UOM_ID"], dt.Rows[0]["UOM_Name"].ToString(), dt.Rows[0]["Abbreviation"].ToString());
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);
         }
 
         public static bool Exists(Unit_of_Measure uom)
@@ -42,8 +45,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Unit_Of_Measure (UOM_ID, UOM_Name, Abbreviation) " +
-                    $"VALUES ({uom.UOM_ID}, '{uom.UOM_Name}', '{uom.Abbreviation}')";
+                string sql = $"INSERT INTO Unit_Of_Measure (UOM_Name, Abbreviation) " +
+                    $"VALUES ('{uom.UOM_Name}', '{uom.Abbreviation}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -53,9 +56,9 @@ namespace CMPG223_Group_13
             if (Exists(uom))
             {
                 string sql = $"UPDATE Unit_Of_Measure SET " +
-                    $"UOM_ID = {uom.UOM_ID}, " +
                     $"UOM_Name = '{uom.UOM_Name}', " +
-                    $"Abbreviation = '{uom.Abbreviation}'";
+                    $"Abbreviation = '{uom.Abbreviation}' " +
+                    $"WHERE UOM_ID = {uom.UOM_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -63,6 +66,50 @@ namespace CMPG223_Group_13
                 //Error Handling
 
             }
+        }
+
+        public static void deleteFromDB(Unit_of_Measure uom)
+        {
+            if (Exists(uom))
+            {
+                string sql = $"DELETE FROM Unit_Of_Measure WHERE UOM_ID = {uom.UOM_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Unit_of_Measure uom = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Unit_of_Measure object from DataRow
+        public static Unit_of_Measure RowToData(DataRow Row)
+        {
+            return new Unit_of_Measure((int)Row["UOM_ID"], Row["UOM_Name"].ToString(), Row["Abbreviation"].ToString());
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Unit_of_Measure uom = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Unit_of_Measure object from GridViewRow
+        public static Unit_of_Measure RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);        
         }
     }
 }

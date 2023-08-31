@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -28,7 +29,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Produce_ID WHERE Produce_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Produce((int)dt.Rows[0]["Produce_ID"], dt.Rows[0]["Produce_Name"].ToString(), dt.Rows[0]["Description"].ToString(), dt.Rows[0]["Image_Link"].ToString(), (int)dt.Rows[0]["UOM_ID"]);
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);    
         }
 
         public static bool Exists(Produce produce)
@@ -46,8 +48,8 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Produce (Produce_ID, Produce_Name, Description, Image_Link, UOM_ID) " +
-                    $"VALUES ({produce.Produce_ID}, '{produce.Produce_Name}', '{produce.Description}', '{produce.Image_Link}', {produce.UOM_ID})";
+                string sql = $"INSERT INTO Produce (Produce_Name, Description, Image_Link, UOM_ID) " +
+                    $"VALUES ('{produce.Produce_Name}', '{produce.Description}', '{produce.Image_Link}', {produce.UOM_ID})";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -60,7 +62,8 @@ namespace CMPG223_Group_13
                     $"Produce_Name = '{produce.Produce_Name}', " +
                     $"Description = '{produce.Description}', " +
                     $"Image_Link = '{produce.Image_Link}', " +
-                    $"UOM_ID = {produce.UOM_ID}";
+                    $"UOM_ID = {produce.UOM_ID} " +
+                    $"WHERE Produce_ID = {produce.Produce_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
             else
@@ -68,6 +71,50 @@ namespace CMPG223_Group_13
                 //Error Handling
 
             }
+        }
+
+        public static void deleteFromDB(Produce produce)
+        {
+            if (Exists(produce))
+            {
+                string sql = $"DELETE FROM Produce WHERE Produce_ID = {produce.Produce_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Produce produce = RowToFarmer(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Produce object from DataRow
+        public static Produce RowToData(DataRow Row)
+        {
+            return new Produce((int)Row["Produce_ID"], Row["Produce_Name"].ToString(), Row["Description"].ToString(), Row["Image_Link"].ToString(), (int)Row["UOM_ID"]);
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Produce produce = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Produce object from GridViewRow
+        public static Produce RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
     }
 }
