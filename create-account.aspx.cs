@@ -55,7 +55,7 @@ namespace CMPG223_Group_13
                 // add farm
                 userID = getFarmerByEmail(email).User_ID;
                 Farm farm = new Farm(-1, userID, farmName, farmAddress);
-                Farm.insertInDB(farm);
+                Farm.insertIntoDB(farm);
             }
             else
             { 
