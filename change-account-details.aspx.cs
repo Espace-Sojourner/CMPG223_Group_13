@@ -13,5 +13,29 @@ namespace CMPG223_Group_13
         {
 
         }
+
+        protected void cbChangePassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbChangePassword.Checked)
+            {
+                lblNewPassword.Visible = true;
+                lblOldPassword.Visible = true;
+                lblRepeatPassword.Visible = true;
+
+                tbOldPassword.Visible = true;
+                tbNewPassword.Visible = true;
+                tbConfirmNewPassword.Visible = true;
+            }
+            else
+            {
+                lblNewPassword.Visible = false;
+                lblOldPassword.Visible = false;
+                lblRepeatPassword.Visible = false;
+
+                tbOldPassword.Visible = false;
+                tbNewPassword.Visible = false;
+                tbConfirmNewPassword.Visible = false;
+            }
+        }
     }
 }
