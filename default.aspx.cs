@@ -19,7 +19,11 @@ namespace CMPG223_Group_13
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["User"] != null)
+            {
+                // send to dashboard
+                Response.Redirect("~/dashboard.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -38,11 +42,11 @@ namespace CMPG223_Group_13
                 }
 
                 //grab input
-                tbEmail.Text = email;
-                tbPassword.Text = password;
+                email = tbEmail.Text;
+                password = tbPassword.Text;
 
                 //check if inputted info is correct
-                string sql = $"SELECT * FROM " + login_type + $"WHERE Email_Address = {email}";
+                string sql = $"SELECT * FROM {login_type} WHERE Email_Address = {email} AND Password = {password}";
                 DataTable dt = DatabaseHandler.executeSelectToDT(sql);
                 if (dt.Rows.Count == 0)
                 {
@@ -84,6 +88,9 @@ namespace CMPG223_Group_13
                         //create user object
                         user = new User(id, usertype, firstname, lastname, email, number, address, password);
                         Session["User"] = user;
+
+                        // send to dashboard
+                        Response.Redirect("~/dashboard.aspx");
                     }
                 }
 
