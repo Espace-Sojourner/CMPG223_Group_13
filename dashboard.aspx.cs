@@ -11,7 +11,44 @@ namespace CMPG223_Group_13
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblWelcome.Text = "Welcome, " + ((User)Session["User"]).First_Name + " " + ((User)Session["User"]).Last_Name;
 
+            //check if user is farmer or not and hide/show buttons accordingly
+            if(((User)Session["User"]).UserType == UserType.Farmer)
+            {
+                btnManageListings.Visible = true;
+                btnBrowse.Visible = false;
+            }
+            else if (((User)Session["User"]).UserType == UserType.Client)
+            {
+                btnManageListings.Visible = false;
+                btnBrowse.Visible = true;
+            }
+            else if (((User)Session["User"]).UserType == UserType.Admin)
+            {
+                btnManageListings.Visible = true;
+                btnBrowse.Visible = true;
+            }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/default.aspx");
+        }
+
+        protected void btnAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/change-account-details.aspx");
+        }
+
+        protected void btnManageListings_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/listing-details.aspx");//might need to be list-produce.aspx
+        }
+
+        protected void btnBrowse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/browse-produce.aspx");
         }
     }
 }
