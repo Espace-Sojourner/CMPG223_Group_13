@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace CMPG223_Group_13
 {
@@ -25,7 +26,90 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Farm_ID WHERE Farm_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Farm((int)dt.Rows[0]["Farm_ID"], (int)dt.Rows[0]["Farmer_ID"], dt.Rows[0]["Farm_Name"].ToString(), dt.Rows[0]["Farm_Address"].ToString());
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);
+        }
+
+        public static bool Exists(Farm farm)
+        {
+            if (getByID(farm.Farm_ID) == null) return false;
+            else return true;
+        }
+
+        public static void insertIntoDB(Farm farm)
+        {
+            if (Exists(farm))
+            {
+                //Error Handling
+
+            }
+            else
+            {
+                string sql = $"INSERT INTO Farm (Farmer_ID, Farm_Name, Farm_Address) " +
+                    $"VALUES ({farm.Farmer_ID}, '{farm.Farm_Name}', '{farm.Farm_Address}')";
+                DatabaseHandler.executeInsert(sql);
+            }
+        }
+
+        public static void updateInDB(Farm farm)
+        {
+            if (Exists(farm))
+            {
+                string sql = $"UPDATE Farm SET " +
+                    $"Farmer_ID = {farm.Farmer_ID}, " +
+                    $"Farm_Name = '{farm.Farm_Name}', " +
+                    $"Farm_Address = '{farm.Farm_Address}' " +
+                    $"WHERE Farm_ID = {farm.Farm_ID}";
+                DatabaseHandler.executeUpdate(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+        public static void deleteFromDB(Farm farm)
+        {
+            if (Exists(farm))
+            {
+                string sql = $"DELETE FROM Farm WHERE Farm_ID = {farm.Farm_ID}";
+                DatabaseHandler.executeDelete(sql);
+            }
+            else
+            {
+                //Error Handling
+
+            }
+        }
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Farm farm = RowToData(dataTable.Rows[rowIndex])
+         * 
+         */
+
+        //Returns Farm object from DataRow
+        public static Farm RowToData(DataRow Row)
+        {
+            return new Farm((int)Row["Farm_ID"], (int)Row["Farmer_ID"], Row["Farm_Name"].ToString(), Row["Farm_Address"].ToString());
+        }
+
+
+
+        /*
+         * USAGE
+         * 
+         * 1) Farm farm = RowToData(gridView.SelectedRow)
+         * 
+         */
+
+        //Returns Farm object from GridViewRow
+        public static Farm RowToData(GridViewRow Row)
+        {
+            return RowToData((Row.DataItem as DataRowView).Row);
         }
 
     }
