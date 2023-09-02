@@ -26,8 +26,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Farm_ID WHERE Farm_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToData(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
         }
 
         public static bool Exists(Farm farm)
@@ -109,7 +109,7 @@ namespace CMPG223_Group_13
         //Returns Farm object from GridViewRow
         public static Farm RowToData(GridViewRow Row)
         {
-            return RowToData((Row.DataItem as DataRowView).Row);
+            return getByID(int.Parse(Row.Cells[1].Text));
         }
 
     }

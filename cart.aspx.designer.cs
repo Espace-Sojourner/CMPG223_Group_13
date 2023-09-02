@@ -11,7 +11,7 @@ namespace CMPG223_Group_13
 {
 
 
-    public partial class listProduce
+    public partial class cart
     {
 
         /// <summary>
@@ -24,30 +24,57 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// tbSubSearch control.
+        /// lblHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSubSearch;
+        protected global::System.Web.UI.WebControls.Label lblHeading;
 
         /// <summary>
-        /// gvProduce control.
+        /// lstCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProduce;
+        protected global::System.Web.UI.WebControls.ListBox lstCart;
 
         /// <summary>
-        /// imgProduce control.
+        /// btnRemove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduce;
+        protected global::System.Web.UI.WebControls.Button btnRemove;
+
+        /// <summary>
+        /// btnClearCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearCart;
+
+        /// <summary>
+        /// btnContinueShopping control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnContinueShopping;
+
+        /// <summary>
+        /// btnCheckOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCheckOut;
     }
 }

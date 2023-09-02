@@ -31,8 +31,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Order_ID WHERE Order_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToData(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
         }
 
         public static bool Exists(Order order)
@@ -117,7 +117,7 @@ namespace CMPG223_Group_13
         //Returns Order object from GridViewRow
         public static Order RowToData(GridViewRow Row)
         {
-            return RowToData((Row.DataItem as DataRowView).Row);
+            return getByID(int.Parse(Row.Cells[1].Text));
         }
     }
 }
