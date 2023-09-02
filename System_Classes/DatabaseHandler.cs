@@ -53,7 +53,7 @@ namespace CMPG223_Group_13
 
 
         //Receives SQL Select statement with table name and GridView that has to display data
-        public static void LoadGV(string selectCmd, string tableName, ref DataGrid gvData)
+        public static void LoadGV(string selectCmd, string tableName, ref GridView gvData)
         {
             DataSet ds = executeSelectToDS(selectCmd, tableName);
             gvData.DataSource = ds;

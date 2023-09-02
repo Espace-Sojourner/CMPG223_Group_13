@@ -26,7 +26,7 @@ namespace CMPG223_Group_13
                 userPassword = tbPassword.Text,
                 firstName = tbFirstname.Text,
                 lastName = tbLastname.Text,
-                email = tbEmail.Text,
+                email = tbEmail.Text.ToLower(),
                 phoneNumber = tbPhone.Text,
                 shippingAddress = tbShippingAddress.Text;
             bool isFarmer = cbFarmerAccount.Checked;
