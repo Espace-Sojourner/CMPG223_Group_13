@@ -33,8 +33,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Bank_Account_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToData(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
         }
 
         public static bool Exists(Bank_Account_Info info)

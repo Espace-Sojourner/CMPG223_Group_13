@@ -106,35 +106,32 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Client WHERE Client_ID = {clientID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToClient(dt.Rows[0]);
+            else return null;
         }
 
         public static User getClientByEmail(string clientEmail)
         {
             string sql = $"SELECT * FROM Client WHERE Email_Address = '{clientEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToClient(dt.Rows[0]);
+            else return null;
         }
 
         public static User getFarmerByID(int farmerID)
         {
             string sql = $"SELECT * FROM Farmer WHERE Farmer_ID = {farmerID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToFarmer(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToFarmer(dt.Rows[0]);
+            else return null;
         }
 
         public static User getFarmerByEmail(string farmerEmail)
         {
             string sql = $"SELECT * FROM Farmer WHERE Email_Address = '{farmerEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0)
-            {
-                return null;
-            }
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToFarmer(dt.Rows[0]);
+            else return null;
         }
         #endregion getUserMethods
 
