@@ -87,12 +87,12 @@ namespace CMPG223_Group_13
                         // remove previous item
                         ((ArrayList)Session["Cart"]).Remove(prevItem);
                         // create updated cart item with new quantity and price
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity + prevItem.quantity, price + prevItem.price);
+                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity + prevItem.quantity, uom.UOM_ID, price + prevItem.price);
                     }
                     else
                     {
                         // create cart item
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, price);                                           
+                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.UOM_ID, price);                                           
                     }
                     // add item to cart  
                     ((ArrayList)Session["Cart"]).Add(item);
