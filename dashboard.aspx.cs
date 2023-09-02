@@ -43,7 +43,7 @@ namespace CMPG223_Group_13
 
         protected void btnManageListings_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/listing-details.aspx");//might need to be list-produce.aspx
+            Response.Redirect("~/list-produce.aspx");
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
