@@ -30,8 +30,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM LP_ID WHERE LP_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToData(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
         }
 
         public static bool Exists(Listed_Produce lp)

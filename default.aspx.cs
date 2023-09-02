@@ -6,16 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using static CMPG223_Group_13.User;
 
 namespace CMPG223_Group_13
 {
     public partial class _default : System.Web.UI.Page
     {
-        //fields
-        string login_type; // Client or Farmer depending on login type. Is static to allow other forms to access it easier if needed
-        string email;
-        string password;
-        User user;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,70 +24,34 @@ namespace CMPG223_Group_13
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+
             //check if a radiobutton is selected
-            if(rbtnClient.Checked || rbtnFarmer.Checked)
+            if (rbtnClient.Checked || rbtnFarmer.Checked)
             {
+                User user = null;
+                string email = tbEmail.Text.ToLower();
+                string password = tbPassword.Text;
+
                 //find login type
-                if(rbtnClient.Checked)
+                if (rbtnClient.Checked)
                 {
-                    login_type = "Client";
+                    user = getClientByEmail(email);
                 }
-                else if(rbtnFarmer.Checked)
+                else if (rbtnFarmer.Checked)
                 {
-                    login_type = "Farmer";
+                    user = getFarmerByEmail(email);
                 }
 
-                //grab input
-                email = tbEmail.Text;
-                password = tbPassword.Text;
-
-                //check if inputted info is correct
-                string sql = $"SELECT * FROM {login_type} WHERE Email_Address = {email} AND Password = {password}";
-                DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-                if (dt.Rows.Count == 0)
+                if (user.User_Password == password)
                 {
-                    lblError.Text = "Invalid user info";
+                    Session["User"] = user;
+
+                    // send to dashboard
+                    Response.Redirect("~/dashboard.aspx");
                 }
                 else
                 {
-                    //grab all user info
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        int id;
-                        if(login_type == "Farmer")
-                        {
-                            id = (int)row["Farmer_ID"];
-                        }
-                        else //if client
-                        {
-                            id = (int)row["Client_ID"];
-                        }
-
-                        string firstname = (string)row["First_Name"];
-                        string lastname = (string)row["Last_Name"];
-                        string number = (string)row["Phone_Number"];
-
-                        UserType usertype;
-                        string address;
-
-                        if(login_type == "Farmer")
-                        {
-                            usertype = UserType.Farmer;
-                            address = null;
-                        }
-                        else //if client
-                        {
-                            usertype = (UserType)row["Client_Type"];
-                            address = (string)row["Shipping_Address"];
-                        }
-
-                        //create user object
-                        user = new User(id, usertype, firstname, lastname, email, number, address, password);
-                        Session["User"] = user;
-
-                        // send to dashboard
-                        Response.Redirect("~/dashboard.aspx");
-                    }
+                    lblError.Text = "Invalid user info";
                 }
 
             }

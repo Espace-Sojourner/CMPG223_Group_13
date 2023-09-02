@@ -10,7 +10,7 @@ namespace CMPG223_Group_13
 {
     public class DatabaseHandler
     {
-        private static string conString = "@\"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Databases.mdf;Integrated Security=True\"";
+        private static string conString = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Databases.mdf;Integrated Security=True";
         private static SqlConnection con = new SqlConnection(conString);
 
         //Receives Update SQL Statement and handles Updating
@@ -53,7 +53,7 @@ namespace CMPG223_Group_13
 
 
         //Receives SQL Select statement with table name and GridView that has to display data
-        public static void LoadGV(string selectCmd, string tableName, ref DataGrid gvData)
+        public static void LoadGV(string selectCmd, string tableName, ref GridView gvData)
         {
             DataSet ds = executeSelectToDS(selectCmd, tableName);
             gvData.DataSource = ds;

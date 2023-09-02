@@ -106,35 +106,32 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Client WHERE Client_ID = {clientID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToClient(dt.Rows[0]);
+            else return null;
         }
 
         public static User getClientByEmail(string clientEmail)
         {
-            string sql = $"SELECT * FROM Client WHERE Email_Address = {clientEmail}";
+            string sql = $"SELECT * FROM Client WHERE Email_Address = '{clientEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToClient(dt.Rows[0]);
+            else return null;
         }
 
         public static User getFarmerByID(int farmerID)
         {
             string sql = $"SELECT * FROM Farmer WHERE Farmer_ID = {farmerID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0) return null;
-            else return RowToFarmer(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToFarmer(dt.Rows[0]);
+            else return null;
         }
 
         public static User getFarmerByEmail(string farmerEmail)
         {
-            string sql = $"SELECT * FROM Farmer WHERE Email_Address = {farmerEmail}";
+            string sql = $"SELECT * FROM Farmer WHERE Email_Address = '{farmerEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt.Rows.Count == 0)
-            {
-                return null;
-            }
-            else return RowToClient(dt.Rows[0]);
+            if (dt?.Rows?.Count > 0) return RowToFarmer(dt.Rows[0]);
+            else return null;
         }
         #endregion getUserMethods
 
@@ -150,7 +147,7 @@ namespace CMPG223_Group_13
         //Returns User object from DataRow
         public static User RowToClient(DataRow Row)
         {
-            return new User((int)Row["Client_ID"], (UserType)Row["Client_Type"], Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), Row["Shipping_Address"].ToString(), Row["Password"].ToString());
+            return new User((int)Row["Client_ID"], (UserType)Enum.Parse(typeof(UserType), Row["Client_Type"].ToString()), Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), Row["Shipping_Address"].ToString(), Row["Password"].ToString());
         }
 
 
