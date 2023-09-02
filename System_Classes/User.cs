@@ -112,7 +112,7 @@ namespace CMPG223_Group_13
 
         public static User getClientByEmail(string clientEmail)
         {
-            string sql = $"SELECT * FROM Client WHERE Email_Address = {clientEmail.ToLower()}";
+            string sql = $"SELECT * FROM Client WHERE Email_Address = '{clientEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0) return null;
             else return RowToClient(dt.Rows[0]);
@@ -128,7 +128,7 @@ namespace CMPG223_Group_13
 
         public static User getFarmerByEmail(string farmerEmail)
         {
-            string sql = $"SELECT * FROM Farmer WHERE Email_Address = {farmerEmail.ToLower()}";
+            string sql = $"SELECT * FROM Farmer WHERE Email_Address = '{farmerEmail.ToLower()}'";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt.Rows.Count == 0)
             {
@@ -150,7 +150,7 @@ namespace CMPG223_Group_13
         //Returns User object from DataRow
         public static User RowToClient(DataRow Row)
         {
-            return new User((int)Row["Client_ID"], (UserType)Row["Client_Type"], Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), Row["Shipping_Address"].ToString(), Row["Password"].ToString());
+            return new User((int)Row["Client_ID"], (UserType)Enum.Parse(typeof(UserType), Row["Client_Type"].ToString()), Row["First_Name"].ToString(), Row["Last_Name"].ToString(), Row["Email_Address"].ToString(), Row["Phone_Number"].ToString(), Row["Shipping_Address"].ToString(), Row["Password"].ToString());
         }
 
 

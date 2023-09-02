@@ -33,7 +33,8 @@ namespace CMPG223_Group_13
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Bank_Account_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            return new Bank_Account_Info((int)dt.Rows[0]["Bank_Account_ID"], (int)dt.Rows[0]["Farmer_ID"], (int)dt.Rows[0]["User_ID"], dt.Rows[0]["Bank_Name"].ToString(), dt.Rows[0]["Account_Number"].ToString());
+            if (dt.Rows.Count == 0) return null;
+            else return RowToData(dt.Rows[0]);
         }
 
         public static bool Exists(Bank_Account_Info info)
