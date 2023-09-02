@@ -118,7 +118,7 @@ namespace CMPG223_Group_13
         //Returns Bank_Account_Info object from GridViewRow
         public static Bank_Account_Info RowToData(GridViewRow Row)
         {
-            return RowToData((Row.DataItem as DataRowView).Row);
+            return getByID(int.Parse(Row.Cells[1].Text));
         }
 
     }

@@ -162,7 +162,7 @@ namespace CMPG223_Group_13
         //Returns User object from GridViewRow
         public static User RowToClient(GridViewRow Row)
         {
-            return RowToClient((Row.DataItem as DataRowView).Row);        
+            return getClientByID(int.Parse(Row.Cells[1].Text));
         }
 
 
@@ -192,7 +192,7 @@ namespace CMPG223_Group_13
         //Returns User object from DataRow
         public static User RowToFarmer(GridViewRow Row)
         {
-            return RowToFarmer((Row.DataItem as DataRowView).Row);
+            return getFarmerByID(int.Parse(Row.Cells[1].Text));
         }
 
 
