@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div>
-                <asp:GridView ID="gvProduce" runat="server" class="border-style" OnSelectedIndexChanged="gvProduce_SelectedIndexChanged"></asp:GridView>
+                <asp:GridView ID="gvProduce" runat="server" class="border-style" OnSelectedIndexChanged="gvProduce_SelectedIndexChanged" AutoGenerateSelectButton="True"></asp:GridView>
             </div>
         </div>
         <div class="box">

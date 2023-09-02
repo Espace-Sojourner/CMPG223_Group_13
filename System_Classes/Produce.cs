@@ -114,7 +114,7 @@ namespace CMPG223_Group_13
         //Returns Produce object from GridViewRow
         public static Produce RowToData(GridViewRow Row)
         {
-            return RowToData((Row.DataItem as DataRowView).Row);
+            return getByID(int.Parse(Row.Cells[1].Text));
         }
     }
 }

@@ -14,13 +14,14 @@ namespace CMPG223_Group_13
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadGV("Select * FROM Produce", "Produce", ref gvProduce);
+            LoadGV("Select Produce_ID as ID, Produce_Name, Description, UOM_ID as [Unit of measure] FROM Produce", "Produce", ref gvProduce);
+            //gvProduce.Columns[2].Visible = false;
         }
 
         protected void gvProduce_SelectedIndexChanged(object sender, EventArgs e)
         {
             Produce selProduce = Produce.RowToData(gvProduce.SelectedRow);
-            if (File.Exists(selProduce.Image_Link))
+            if (File.Exists(selProduce?.Image_Link))
             {
                 imgProduce.ImageUrl = selProduce.Image_Link;
             }
@@ -34,6 +35,7 @@ namespace CMPG223_Group_13
         {
             string sql = $"Select * FROM Produce WHERE Produce_Name LIKE '%{tbSubSearch.Text}%'";
             LoadGV(sql, "Produce", ref gvProduce);
+            //gvProduce.Columns[2].Visible = false;
         }
     }
 }
