@@ -42,7 +42,7 @@ namespace CMPG223_Group_13
                     user = getFarmerByEmail(email);
                 }
 
-                if (user.User_Password == password)
+                if (user?.User_Password == password)
                 {
                     Session["User"] = user;
 
