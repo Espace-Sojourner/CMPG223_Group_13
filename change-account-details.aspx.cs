@@ -94,12 +94,12 @@ namespace CMPG223_Group_13
                 updateFarmer(newUser);
                 Farm newFarm = new Farm(farm.Farm_ID, user.User_ID, farmName, farmAddress);                
                 Farm.updateInDB(newFarm);
-                user = getFarmerByID(user.User_ID); // update Session
+                Session["User"] = getFarmerByID(user.User_ID); // update Session
             }
             else
             {
                 updateClient(newUser);
-                user = getClientByID(user.User_ID); // update Session
+                Session["User"] = getClientByID(user.User_ID); // update Session
             }
 
             // update bank if applicable

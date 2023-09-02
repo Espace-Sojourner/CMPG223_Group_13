@@ -73,6 +73,7 @@
       <DependentUpon>Databases.mdf</DependentUpon>
     </Content>
     <Content Include="browse-produce.aspx" />
+    <Content Include="cart.aspx" />
     <Content Include="change-account-details.aspx" />
     <Content Include="create-account.aspx" />
     <Content Include="dashboard.aspx" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="browse-produce.aspx.designer.cs">
       <DependentUpon>browse-produce.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="change-account-details.aspx.cs">
       <DependentUpon>change-account-details.aspx</DependentUpon>
@@ -135,6 +143,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\Cart_Item.cs" />
     <Compile Include="System_Classes\DatabaseHandler.cs" />
     <Compile Include="System_Classes\User.cs" />
     <Compile Include="System_Classes\Farm.cs" />
