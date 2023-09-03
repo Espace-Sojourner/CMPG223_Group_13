@@ -11,23 +11,25 @@ namespace CMPG223_Group_13
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = "Welcome, " + ((User)Session["User"]).First_Name + " " + ((User)Session["User"]).Last_Name;
-
-            //check if user is farmer or not and hide/show buttons accordingly
-            if(((User)Session["User"]).UserType == UserType.Farmer)
+            if (Session["User"] != null)
             {
-                btnManageListings.Visible = true;
-                btnBrowse.Visible = false;
-            }
-            else if (((User)Session["User"]).UserType == UserType.Client)
-            {
-                btnManageListings.Visible = false;
-                btnBrowse.Visible = true;
-            }
-            else if (((User)Session["User"]).UserType == UserType.Admin)
-            {
-                btnManageListings.Visible = true;
-                btnBrowse.Visible = true;
+                lblWelcome.Text = "Welcome, " + ((User)Session["User"]).First_Name + " " + ((User)Session["User"]).Last_Name;
+                //check if user is farmer or not and hide/show buttons accordingly
+                if (((User)Session["User"]).UserType == UserType.Farmer)
+                {
+                    btnManageListings.Visible = true;
+                    btnBrowse.Visible = false;
+                }
+                else if (((User)Session["User"]).UserType == UserType.Client)
+                {
+                    btnManageListings.Visible = false;
+                    btnBrowse.Visible = true;
+                }
+                else if (((User)Session["User"]).UserType == UserType.Admin)
+                {
+                    btnManageListings.Visible = true;
+                    btnBrowse.Visible = true;
+                }
             }
         }
 

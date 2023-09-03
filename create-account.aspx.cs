@@ -22,8 +22,7 @@ namespace CMPG223_Group_13
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             // user info
-            string username = tbUsername.Text, //not used
-                userPassword = tbPassword.Text,
+               string userPassword = tbPassword.Text,
                 firstName = tbFirstname.Text,
                 lastName = tbLastname.Text,
                 email = tbEmail.Text.ToLower(),
