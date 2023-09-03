@@ -25,22 +25,22 @@ namespace CMPG223_Group_13
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            try
+            User user = null;
+            string email = tbEmail.Text.ToLower();
+            string password = tbPassword.Text;
+
+            //Getting correct UserType
+            if (rbtnClient.Checked)
             {
-                User user = null;
-                string email = tbEmail.Text.ToLower();
-                string password = tbPassword.Text;
+                user = getClientByEmail(email);
+            }
+            else if (rbtnFarmer.Checked)
+            {
+                user = getFarmerByEmail(email);
+            }
 
-                //Getting correct UserType
-                if (rbtnClient.Checked)
-                {
-                    user = getClientByEmail(email);
-                }
-                else if (rbtnFarmer.Checked)
-                {
-                    user = getFarmerByEmail(email);
-                }
-
+            if(user != null)
+            {
                 if (user.User_Password == password)
                 {
                     //Setting User session object
@@ -57,11 +57,10 @@ namespace CMPG223_Group_13
                     tbPassword.Focus();
                 }
             }
-            catch(ArgumentNullException er)
+            else
             {
                 lblError.Text = "Ensure you have the correct account type selected";
             }
-
         }
 
         protected void btnCreateAccount_Click(object sender, EventArgs e)
