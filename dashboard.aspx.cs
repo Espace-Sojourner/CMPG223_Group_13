@@ -19,16 +19,19 @@ namespace CMPG223_Group_13
                 {
                     btnManageListings.Visible = true;
                     btnBrowse.Visible = false;
+                    btnAddPRoduce.Visible = true;
                 }
                 else if (((User)Session["User"]).UserType == UserType.Client)
                 {
                     btnManageListings.Visible = false;
                     btnBrowse.Visible = true;
+                    btnAddPRoduce.Visible = false;
                 }
                 else if (((User)Session["User"]).UserType == UserType.Admin)
                 {
                     btnManageListings.Visible = true;
                     btnBrowse.Visible = true;
+                    btnAddPRoduce.Visible = true;
                 }
             }
         }
