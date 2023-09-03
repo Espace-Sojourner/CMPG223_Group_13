@@ -59,8 +59,11 @@ namespace CMPG223_Group_13
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            foreach (Cart_Item item in cartItems)
-            {
+            //foreach (Cart_Item item in cartItems)
+            //{
+            for (int i = 0; i < cartItems.Count; i++)
+            { 
+                Cart_Item item = (Cart_Item)cartItems[i];
                 // add order
                 Order order = new Order(-1, user.User_ID,item.LP_ID, DateTime.Now,totalPrice,item.quantity);
                 Order.insertIntoDB(order);
