@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="listing-details.aspx.cs" Inherits="CMPG223_Group_13.listing_details" %>
-
+<link href="general.css" rel="stylesheet" type="text/css" />
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
