@@ -33,7 +33,10 @@ namespace CMPG223_Group_13
                 farm = Farm.getByID(user.User_ID);
             }
 
-            prefillData();
+            if(!Page.IsPostBack)
+            {
+                prefillData();
+            }
             
         }
 
