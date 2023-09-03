@@ -277,7 +277,7 @@ namespace CMPG223_Group_13
                     $"Last_Name = '{farmer.Last_Name}', " +
                     $"Email_Address = '{farmer.Email_Address}', " +
                     $"Phone_Number = '{farmer.Phone_Number}', " +
-                    $"Password = '{farmer.User_Password}'" +
+                    $"Password = '{farmer.User_Password}' " +
                     $"WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
