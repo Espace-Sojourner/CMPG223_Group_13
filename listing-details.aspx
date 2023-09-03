@@ -28,6 +28,7 @@
         <div id="input">
             Quantity:
             <asp:TextBox ID="tbQuantity" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbQuantity" ErrorMessage="Required Field" Font-Italic="True" ForeColor="Red"></asp:RequiredFieldValidator>
             <br />
             <asp:Label ID="lblError" runat="server" Font-Bold="False" Font-Italic="True" ForeColor="Red"></asp:Label>
             <br />
