@@ -71,8 +71,7 @@ namespace CMPG223_Group_13
 
         protected void btnAddPRoduce_Click(object sender, EventArgs e)
         {
-            //Redirecting to add produce page
-            Response.Redirect("~/add-produce");
+            Response.Redirect("~/add-produce.aspx");
         }
     }
 }
