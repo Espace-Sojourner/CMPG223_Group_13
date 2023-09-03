@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add-produce.aspx" />
     <Content Include="App_Data\Databases.mdf" />
     <Content Include="App_Data\Databases_log.ldf">
       <DependentUpon>Databases.mdf</DependentUpon>
@@ -86,6 +87,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="add-produce.aspx.cs">
+      <DependentUpon>add-produce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="add-produce.aspx.designer.cs">
+      <DependentUpon>add-produce.aspx</DependentUpon>
+    </Compile>
     <Compile Include="browse-produce.aspx.cs">
       <DependentUpon>browse-produce.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
