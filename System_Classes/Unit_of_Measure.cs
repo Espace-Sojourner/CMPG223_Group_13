@@ -24,7 +24,7 @@ namespace CMPG223_Group_13
 
         public static Unit_of_Measure getByID(int ID)
         {
-            string sql = $"SELECT * FROM UOM_ID WHERE UOM_ID = {ID}";
+            string sql = $"SELECT * FROM Unit_Of_Measure WHERE UOM_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
             else return null;

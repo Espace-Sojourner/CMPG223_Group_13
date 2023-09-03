@@ -27,7 +27,7 @@ namespace CMPG223_Group_13
 
         public static Produce getByID(int ID)
         {
-            string sql = $"SELECT * FROM Produce_ID WHERE Produce_ID = {ID}";
+            string sql = $"SELECT * FROM Produce WHERE Produce_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
             else return null;
