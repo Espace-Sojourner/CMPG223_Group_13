@@ -29,6 +29,8 @@
             Quantity:
             <asp:TextBox ID="tbQuantity" runat="server"></asp:TextBox>
             <br />
+            <asp:Label ID="lblError" runat="server" Font-Bold="False" Font-Italic="True" ForeColor="Red"></asp:Label>
+            <br />
             <asp:Button ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click" Text="Add to cart" Width="140px" />
             <br />
             <asp:Label ID="lblAdded" runat="server" Text="Added to cart" Visible="False"></asp:Label>
