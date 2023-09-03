@@ -121,6 +121,16 @@ namespace CMPG223_Group_13
             Response.Redirect("~/dashboard.aspx");
         }
 
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            prefillData();
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/dashboard.aspx");
+        }
+
         protected void cbChangePassword_CheckedChanged(object sender, EventArgs e)
         {
             if (cbChangePassword.Checked)

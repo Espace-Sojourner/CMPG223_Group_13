@@ -44,6 +44,12 @@
             </div>
 
         </div>
+        <p>
+            <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click"/>
+        </p>
+        <p>
+            <asp:Button ID="btnBack" runat="server" Text="Back" OnClick="btnBack_Click"/>
+        </p>
     </form>
 </body>
 </html>
