@@ -46,7 +46,7 @@ namespace CMPG223_Group_13
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             addListingToCart();
-            lblAdded.Visible = true;
+            
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
@@ -58,6 +58,7 @@ namespace CMPG223_Group_13
 
         protected void addListingToCart()
         {
+            lblAdded.Visible = false;
             int quantity; //Quantity to be purchased
             double price; //Quantity times price per UOM
             if (int.TryParse(tbQuantity.Text, out quantity))
@@ -88,16 +89,28 @@ namespace CMPG223_Group_13
                     }
 
                     //Setting Cart object session from local variable
-                    Session["Cart"] = localList;            
+                    Session["Cart"] = localList;
+                    lblAdded.Visible = true;
                 }
                 else
                 {
+                    if (quantity > 0)
+                    {
+                        lblError.Text = "The quantity entered is more than what is currently available";
+                    }
+                    else
+                    {
+                        lblError.Text = "Enter a quantity more than 0";
+                    }
+                    tbQuantity.Text = "";
                     tbQuantity.Focus();
                 }
             }
             else
             {
-
+                lblError.Text = "Enter a valid number";
+                tbQuantity.Text = "";
+                tbQuantity.Focus();
             }
 
         }
