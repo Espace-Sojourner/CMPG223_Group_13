@@ -21,7 +21,6 @@ namespace CMPG223_Group_13
                 //Displaying correct buttons according to the UserType of the logged in User
                 if (user.isFarmer())
                 {
-                    btnManageListings.Visible = true;
                     btnBrowse.Visible = false;
                     btnAddPRoduce.Visible = true;
                 }
@@ -32,12 +31,10 @@ namespace CMPG223_Group_13
                     //Validating if user is Admin
                     if (!user.isAdmin())
                     {
-                        btnManageListings.Visible = false;
                         btnAddPRoduce.Visible = false;
                     }
                     else
                     {
-                        btnManageListings.Visible = true;
                         btnAddPRoduce.Visible = true;
                     }             
                 }
