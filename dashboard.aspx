@@ -10,11 +10,13 @@
     <form id="form1" runat="server">
         <div class="box">
             <h1>Dashboard</h1>
+             <asp:Label ID="lblWelcome" runat="server" Text="Welcome [insert username]" Font-Names="Calibri" Font-Size="Large" style="color: white"></asp:Label>              
             <div class="right-aligned-sub-box">
-                <asp:Button ID="btnBrowse" runat="server" Text="Browse" class="large-flat-button"/>
-                <asp:Button ID="btnManageListings" runat="server" Text="Manage Listings" class="large-flat-button"/>
-                <asp:Button ID="btnAccount" runat="server" Text="Account" class="large-flat-button"/>
-                <asp:Button ID="btnLogout" runat="server" Text="Logout"/>
+                <asp:Button ID="btnBrowse" runat="server" Text="Browse" class="large-flat-button" OnClick="btnBrowse_Click"/>
+                <asp:Button ID="btnAddPRoduce" runat="server" Text="Add Listing" class="large-flat-button" OnClick="btnAddPRoduce_Click" />
+                <asp:Button ID="btnManageListings" runat="server" Text="Manage Listings" class="large-flat-button" OnClick="btnManageListings_Click"/>
+                <asp:Button ID="btnAccount" runat="server" Text="Account" class="large-flat-button" OnClick="btnAccount_Click"/>
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"/>
             </div>
         </div>
     </form>

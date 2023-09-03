@@ -22,6 +22,8 @@
                 <asp:GridView ID="gvProduce" runat="server" class="border-style" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gvProduce_SelectedIndexChanged"></asp:GridView>
             </div>
         </div>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

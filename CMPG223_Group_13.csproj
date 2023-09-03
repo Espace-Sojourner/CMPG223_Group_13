@@ -68,21 +68,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add-produce.aspx" />
     <Content Include="App_Data\Databases.mdf" />
     <Content Include="App_Data\Databases_log.ldf">
       <DependentUpon>Databases.mdf</DependentUpon>
     </Content>
     <Content Include="browse-produce.aspx" />
+    <Content Include="Cabbage.jpg" />
+    <Content Include="Carrot.jpg" />
+    <Content Include="cart.aspx" />
     <Content Include="change-account-details.aspx" />
+    <Content Include="check-out.aspx" />
     <Content Include="create-account.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="default.aspx" />
     <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
     <Content Include="listing-details.aspx" />
+    <Content Include="Onion.jpg" />
+    <Content Include="Resources\ProduceImages\Default.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="add-produce.aspx.cs">
+      <DependentUpon>add-produce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="add-produce.aspx.designer.cs">
+      <DependentUpon>add-produce.aspx</DependentUpon>
+    </Compile>
     <Compile Include="browse-produce.aspx.cs">
       <DependentUpon>browse-produce.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -90,12 +104,26 @@
     <Compile Include="browse-produce.aspx.designer.cs">
       <DependentUpon>browse-produce.aspx</DependentUpon>
     </Compile>
+    <Compile Include="cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="change-account-details.aspx.cs">
       <DependentUpon>change-account-details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="change-account-details.aspx.designer.cs">
       <DependentUpon>change-account-details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="check-out.aspx.cs">
+      <DependentUpon>check-out.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="check-out.aspx.designer.cs">
+      <DependentUpon>check-out.aspx</DependentUpon>
     </Compile>
     <Compile Include="create-account.aspx.cs">
       <DependentUpon>create-account.aspx</DependentUpon>
@@ -134,6 +162,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System_Classes\Bank_Account_Info.cs" />
+    <Compile Include="System_Classes\Cart_Item.cs" />
     <Compile Include="System_Classes\DatabaseHandler.cs" />
     <Compile Include="System_Classes\User.cs" />
     <Compile Include="System_Classes\Farm.cs" />
@@ -151,6 +180,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

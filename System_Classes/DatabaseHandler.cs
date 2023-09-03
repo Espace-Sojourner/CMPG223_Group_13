@@ -10,7 +10,8 @@ namespace CMPG223_Group_13
 {
     public class DatabaseHandler
     {
-        private static string conString = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Databases.mdf;Integrated Security=True";
+
+        private static string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Databases.mdf;Integrated Security=True";
         private static SqlConnection con = new SqlConnection(conString);
 
         //Receives Update SQL Statement and handles Updating
@@ -184,6 +185,34 @@ namespace CMPG223_Group_13
          *        // If the only one object is needed or returned dt.Rows[0]["ColumnName"] can be used.
          * 
          */
+
+        //reads values to a dropdownlist. simply pass select command, the name of the field you want to read and ref to dropdownlist
+        public static void readToDDL(string selectCmd, string fieldname, ref DropDownList ddl)
+        {
+            try
+            {
+                ddl.Items.Clear(); //clear any potential previous entries
+
+                //open connection
+                con.Open();
+
+                SqlCommand command = new SqlCommand(selectCmd, con);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                //add entries to dropdown list
+                ddl.Items.Add(new ListItem(" ")); //add blank item at top to force user to select an option
+
+                while (reader.Read())
+                {
+                    ddl.Items.Add(new ListItem(reader[fieldname].ToString()));
+                }
+
+                con.Close(); //close connection
+            }
+            catch (SqlException er) { }
+            finally { con.Close(); }
+        }
 
     }
 }

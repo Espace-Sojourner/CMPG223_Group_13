@@ -116,7 +116,7 @@ namespace CMPG223_Group_13
         //Returns Listed_Produce object from GridViewRow
         public static Listed_Produce RowToData(GridViewRow Row)
         {
-            return RowToData((Row.DataItem as DataRowView).Row);
+            return getByID(int.Parse(Row.Cells[1].Text));
         }
     }
 }
