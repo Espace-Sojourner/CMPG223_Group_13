@@ -30,7 +30,7 @@ namespace CMPG223_Group_13
                     btnBrowse.Visible = true;
 
                     //Validating if user is Admin
-                    if (user.isAdmin())
+                    if (!user.isAdmin())
                     {
                         btnManageListings.Visible = false;
                         btnAddPRoduce.Visible = false;
