@@ -38,6 +38,7 @@ namespace CMPG223_Group_13
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            Session["User"] = null;
             Response.Redirect("~/default.aspx");
         }
 
