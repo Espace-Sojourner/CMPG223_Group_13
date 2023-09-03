@@ -30,7 +30,7 @@ namespace CMPG223_Group_13
             if (user.UserType == UserType.Farmer)
             {
                 isFarmer = true;
-                farm = Farm.getByID(user.User_ID);
+                farm = Farm.getByUserID(user.User_ID);
             }
 
             if(!Page.IsPostBack)

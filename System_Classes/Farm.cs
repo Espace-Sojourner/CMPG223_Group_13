@@ -30,6 +30,14 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        public static Farm getByUserID(int ID)
+        {
+            string sql = $"SELECT * FROM Farm WHERE Farmer_ID = {ID}";
+            DataTable dt = DatabaseHandler.executeSelectToDT(sql);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
+        }
+
         public static bool Exists(Farm farm)
         {
             if (getByID(farm.Farm_ID) == null) return false;
