@@ -28,7 +28,10 @@ namespace CMPG223_Group_13
 
                 con.Close();
             }
-            catch (SqlException er) { }
+            catch (SqlException er) {
+                System.Diagnostics.Debug.WriteLine(er.Message);
+                System.Diagnostics.Debug.WriteLine(updateCmd);
+            }
             finally { con.Close(); }
         }
 

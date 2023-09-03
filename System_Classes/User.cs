@@ -226,7 +226,7 @@ namespace CMPG223_Group_13
                     $"Email_Address = '{client.Email_Address}', " +
                     $"Phone_Number = '{client.Phone_Number}', " +
                     $"Shipping_Address = '{client.Shipping_Address}', " +
-                    $"Password = '{client.User_Password}') " +
+                    $"Password = '{client.User_Password}' " +
                     $"WHERE Client_ID = {client.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }
@@ -277,7 +277,7 @@ namespace CMPG223_Group_13
                     $"Last_Name = '{farmer.Last_Name}', " +
                     $"Email_Address = '{farmer.Email_Address}', " +
                     $"Phone_Number = '{farmer.Phone_Number}', " +
-                    $"Password = '{farmer.User_Password}')" +
+                    $"Password = '{farmer.User_Password}'" +
                     $"WHERE Farmer_ID = {farmer.User_ID}";
                 DatabaseHandler.executeUpdate(sql);
             }

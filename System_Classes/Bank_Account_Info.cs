@@ -65,7 +65,7 @@ namespace CMPG223_Group_13
                 string sql = $"UPDATE Bank_Account_Info SET " +
                     $"Farmer_ID = {(info.Farmer_ID == -1 ? null : info.Farmer_ID)}, " +
                     $"Client_ID = {(info.Client_ID == -1 ? null : info.Client_ID)}, " +
-                    $"Bank_name = '{info.Bank_Name}' " +
+                    $"Bank_name = '{info.Bank_Name}', " +
                     $"Account_Number = '{info.Account_Number}' " +
                     $"WHERE Bank_Account_ID = {info.Bank_Account_ID}";
                 DatabaseHandler.executeUpdate(sql);
