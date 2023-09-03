@@ -24,7 +24,7 @@ namespace CMPG223_Group_13
 
         public static Farm getByID(int ID)
         {
-            string sql = $"SELECT * FROM Farm_ID WHERE Farm_ID = {ID}";
+            string sql = $"SELECT * FROM Farm WHERE Farm_ID = {ID}";
             DataTable dt = DatabaseHandler.executeSelectToDT(sql);
             if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
             else return null;
