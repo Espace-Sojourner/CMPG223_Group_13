@@ -263,7 +263,7 @@ namespace CMPG223_Group_13
             else
             {
                 string sql = $"INSERT INTO Farmer (First_Name, Last_Name, Email_Address, Phone_Number, Password) " +
-                    $"VALUES ('{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Email_Address}, '{farmer.Phone_Number}', '{farmer.Shipping_Address}', '{farmer.User_Password}')";
+                    $"VALUES ('{farmer.First_Name}', '{farmer.Last_Name}', '{farmer.Email_Address}', '{farmer.Phone_Number}', '{farmer.User_Password}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
