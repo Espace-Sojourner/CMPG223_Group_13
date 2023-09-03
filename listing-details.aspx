@@ -16,11 +16,7 @@
             <asp:Label ID="lblFarmer" runat="server" Text="Sold by Farmer"></asp:Label>
             <br />
             <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
-            <br />
-            Unit of measure:
-            <asp:DropDownList ID="ddlUOM" runat="server" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged">
-            </asp:DropDownList>
-            <br />
+            &nbsp;<br />
             <asp:Label ID="lblPrice" runat="server" Text="R0 per UOM"></asp:Label>
             <br />
             Available for purchase: <asp:Label ID="lblAvailable" runat="server" Text="0"></asp:Label>
