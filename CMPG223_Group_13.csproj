@@ -74,6 +74,8 @@
       <DependentUpon>Databases.mdf</DependentUpon>
     </Content>
     <Content Include="browse-produce.aspx" />
+    <Content Include="Cabbage.jpg" />
+    <Content Include="Carrot.jpg" />
     <Content Include="cart.aspx" />
     <Content Include="change-account-details.aspx" />
     <Content Include="check-out.aspx" />
@@ -83,6 +85,7 @@
     <Content Include="general.css" />
     <Content Include="list-produce.aspx" />
     <Content Include="listing-details.aspx" />
+    <Content Include="Onion.jpg" />
     <Content Include="Resources\ProduceImages\Default.png" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -12,12 +12,21 @@
             <h1>Add listing</h1>
             <h2>Listing details</h2>
             <div class="right-aligned-sub-box">
-                <div>Produce ID: <asp:TextBox ID="tbProduceID" runat="server" Width="150px"></asp:TextBox></div>
-                <div>Price: <asp:TextBox ID="tbPrice" runat="server" Width="150px"></asp:TextBox></div>
-                <div>Quantity: <asp:TextBox ID="tbQuantity" runat="server" Width="150px"></asp:TextBox></div>
+                <div>Produce:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:DropDownList ID="ddlProduce" runat="server">
+                    </asp:DropDownList>
+                </div>
+                <div>Price: <asp:TextBox ID="tbPrice" runat="server" Width="150px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbPrice" ErrorMessage="Input Price" Font-Italic="True" ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
+                <div>Quantity: <asp:TextBox ID="tbQuantity" runat="server" Width="150px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbQuantity" ErrorMessage="Input Quantity" Font-Italic="True" ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
             </div>
             <h2>Expiration date</h2>
+            <asp:Label ID="lblError" runat="server" Font-Bold="False" Font-Italic="True" ForeColor="Red"></asp:Label>
             <asp:Calendar ID="calExpirationDate" runat="server"></asp:Calendar>
+            <asp:Button ID="btnSubmitListing" runat="server" Height="54px" OnClick="btnSubmitListing_Click" Text="Submit Listing" Width="200px" />
         </div>
     </form>
 </body>
