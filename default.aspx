@@ -33,6 +33,10 @@
                 <asp:RadioButton ID="rbtnFarmer" runat="server" GroupName="Login Type" Text="Farmer" />
             </div>
         </div>
+        <div class="box">
+            <h3>New? Create an account now</h3>
+            <asp:Button ID="btnCreateAccount" runat="server" Text="Create account" Width="150px" OnClick="btnCreateAccount_Click" CausesValidation="False" />
+        </div>
     </form>
 </body>
 </html>

@@ -60,5 +60,10 @@ namespace CMPG223_Group_13
                 lblError.Text = "Please select a login type";
             }
         }
+
+        protected void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/create-account.aspx");
+        }
     }
 }
