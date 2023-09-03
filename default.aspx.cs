@@ -25,35 +25,41 @@ namespace CMPG223_Group_13
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
-            User user = null;
-            string email = tbEmail.Text.ToLower();
-            string password = tbPassword.Text;
-
-            //Getting correct UserType
-            if (rbtnClient.Checked)
+            try
             {
-                user = getClientByEmail(email);
+                User user = null;
+                string email = tbEmail.Text.ToLower();
+                string password = tbPassword.Text;
+
+                //Getting correct UserType
+                if (rbtnClient.Checked)
+                {
+                    user = getClientByEmail(email);
+                }
+                else if (rbtnFarmer.Checked)
+                {
+                    user = getFarmerByEmail(email);
+                }
+
+                if (user.User_Password == password)
+                {
+                    //Setting User session object
+                    Session["User"] = user;
+
+                    //Redirecting to Dashboard page
+                    Response.Redirect("~/dashboard.aspx");
+                }
+                else
+                {
+                    //Showing error and resetting password field
+                    lblError.Text = "Invalid user information has been entered, try again.";
+                    tbPassword.Text = "";
+                    tbPassword.Focus();
+                }
             }
-            else if (rbtnFarmer.Checked)
+            catch(ArgumentNullException er)
             {
-                user = getFarmerByEmail(email);
-            }
-
-            if (user.User_Password == password)
-            {
-                //Setting User session object
-                Session["User"] = user;
-
-                //Redirecting to Dashboard page
-                Response.Redirect("~/dashboard.aspx");
-            }
-            else
-            {
-                //Showing error and resetting password field
-                lblError.Text = "Invalid user information has been entered, try again.";
-                tbPassword.Text = "";
-                tbPassword.Focus();
+                lblError.Text = "Ensure you have the correct account type selected";
             }
 
         }
