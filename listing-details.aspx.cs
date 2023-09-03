@@ -124,5 +124,10 @@ namespace CMPG223_Group_13
             // available quantity - effect of UOM?
             lblAvailable.Text = listing.Available_Quantity.ToString();
         }
+
+        protected void btnBacktoBrowse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/browse-produce.aspx");
+        }
     } 
 }

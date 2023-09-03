@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <div id="produce">
             <asp:Image ID="imgProduce" runat="server" Height="111px" Width="141px" />
+            <asp:Button ID="btnBacktoBrowse" runat="server" Height="40px" OnClick="btnBacktoBrowse_Click" Text="Back" Width="92px" />
             <br />
             <asp:Label ID="lblProduceName" runat="server" Text="Produce Name"></asp:Label>
             <br />

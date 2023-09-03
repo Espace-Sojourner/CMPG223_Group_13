@@ -63,5 +63,10 @@ namespace CMPG223_Group_13
 
 
         }
+
+        private void btnBacktoDash_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/dashboard.aspx");
+        }
     }
 }
