@@ -12,11 +12,11 @@ namespace CMPG223_Group_13
 {
     public partial class cart : System.Web.UI.Page
     {
-        ArrayList cartItems;
+        List<Cart_Item> cartItems;
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (Session["User"] == null) Response.Redirect("~/default.aspx");
-            cartItems = (ArrayList)Session["Cart"];
+            cartItems = (List<Cart_Item>)Session["Cart"];
             if (!IsPostBack)
             {
                 if (cartItems?.Count > 0) setCartPage(true);

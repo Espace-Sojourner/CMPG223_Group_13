@@ -25,7 +25,7 @@ namespace CMPG223_Group_13
                     btnBrowse.Visible = false;
                     btnAddPRoduce.Visible = true;
                 }
-                else if (user.isClient())
+                else //if (user.isClient())
                 {
                     btnBrowse.Visible = true;
 

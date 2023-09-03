@@ -20,7 +20,8 @@ namespace CMPG223_Group_13
         protected void Page_Load(object sender, EventArgs e)
         {
             //Create Cart object session item
-            if (Session["Cart"] == null) Session["Cart"] = new List<Cart_Item>();
+            if (!Page.IsPostBack) 
+                if (Session["Cart"] == null) Session["Cart"] = new List<Cart_Item>();
 
             //Returning of no Listed Produce object is found
             if (Session["LP_ID"] == null) Response.Redirect("~/browse-produce.aspx");
@@ -85,6 +86,7 @@ namespace CMPG223_Group_13
                         //Adding cart item to cart item list
                         localList.Add(item);
                     }
+                    System.Diagnostics.Debug.WriteLine(localList.Count);
 
                     //Setting Cart object session from local variable
                     Session["Cart"] = localList;            
