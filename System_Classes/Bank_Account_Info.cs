@@ -103,7 +103,7 @@ namespace CMPG223_Group_13
         //Returns Bank_Account_Info object from DataRow
         public static Bank_Account_Info RowToData(DataRow Row)
         {
-            return new Bank_Account_Info((int)Row["Bank_Account_ID"], (int)Row["Farmer_ID"], (int)Row["User_ID"], Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
+            return new Bank_Account_Info((int)Row["Bank_Account_ID"], (int)Row["Farmer_ID"], (int)Row["Client_ID"], Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
         }
 
 
