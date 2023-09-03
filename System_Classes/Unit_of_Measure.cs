@@ -22,6 +22,7 @@ namespace CMPG223_Group_13
             this.Abbreviation = Abbreviation;
         }
 
+        //Getting object from database by ID
         public static Unit_of_Measure getByID(int ID)
         {
             string sql = $"SELECT * FROM Unit_Of_Measure WHERE UOM_ID = {ID}";
@@ -30,6 +31,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Unit_of_Measure uom)
         {
             if (getByID(uom.UOM_ID) == null) return false;

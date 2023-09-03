@@ -25,6 +25,7 @@ namespace CMPG223_Group_13
             this.UOM_ID = UOM_ID;
         }
 
+        //Getting object from database by ID
         public static Produce getByID(int ID)
         {
             string sql = $"SELECT * FROM Produce WHERE Produce_ID = {ID}";
@@ -33,6 +34,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Produce produce)
         {
             if (getByID(produce.Produce_ID) == null) return false;

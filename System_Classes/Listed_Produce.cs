@@ -26,6 +26,8 @@ namespace CMPG223_Group_13
             this.Available_Quantity = Available_Quantity;
             this.Expiration_Dates = Expiration_Dates;
         }
+
+        //Getting object from database by ID
         public static Listed_Produce getByID(int ID)
         {
             string sql = $"SELECT * FROM Listed_Produce WHERE LP_ID = {ID}";
@@ -34,6 +36,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Listed_Produce lp)
         {
             if (getByID(lp.LP_ID) == null) return false;

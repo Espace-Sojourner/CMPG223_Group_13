@@ -27,6 +27,7 @@ namespace CMPG223_Group_13
             this.Bought_Quantity = Bought_Quantity;
         }
 
+        //Getting object from database by ID
         public static Order getByID(int ID)
         {
             string sql = $"SELECT * FROM Order WHERE Order_ID = {ID}";
@@ -35,6 +36,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Order order)
         {
             if (getByID(order.Order_ID) == null) return false;

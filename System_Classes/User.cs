@@ -59,18 +59,21 @@ namespace CMPG223_Group_13
         }
 
         #region Exists Methods
+        //Checking if object exists in database
         public static bool farmerExists(User farmer)
         {
             if (getFarmerByID(farmer.User_ID) == null) return false;
             else return true;
         }
 
+        //Checking if object exists in database
         public static bool clientExists(User client)
         {
             if (getClientByID(client.User_ID) == null) return false;
             else return true;
         }
 
+        //Checking if object exists in database
         public static bool userExists(User User)
         {
             bool exists = false;
@@ -102,6 +105,7 @@ namespace CMPG223_Group_13
 
         #region getUserMethods
 
+        //Getting object from database by ID
         public static User getClientByID(int clientID)
         {
             string sql = $"SELECT * FROM Client WHERE Client_ID = {clientID}";
@@ -110,6 +114,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by Email
         public static User getClientByEmail(string clientEmail)
         {
             string sql = $"SELECT * FROM Client WHERE Email_Address = '{clientEmail.ToLower()}'";
@@ -118,6 +123,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by ID
         public static User getFarmerByID(int farmerID)
         {
             string sql = $"SELECT * FROM Farmer WHERE Farmer_ID = {farmerID}";
@@ -126,6 +132,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by Email
         public static User getFarmerByEmail(string farmerEmail)
         {
             string sql = $"SELECT * FROM Farmer WHERE Email_Address = '{farmerEmail.ToLower()}'";
