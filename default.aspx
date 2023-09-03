@@ -29,7 +29,7 @@
             <asp:Label ID="lblLoginType" runat="server" Text="Select login type:"></asp:Label>
 
             <div style="display: flex; justify-content: space-between">
-                <asp:RadioButton ID="rbtnClient" runat="server" GroupName="Login Type" Text="Client"/>
+                <asp:RadioButton ID="rbtnClient" runat="server" GroupName="Login Type" Text="Client" Checked="true"/>
                 <asp:RadioButton ID="rbtnFarmer" runat="server" GroupName="Login Type" Text="Farmer" />
             </div>
         </div>
