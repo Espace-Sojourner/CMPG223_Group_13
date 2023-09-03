@@ -25,8 +25,10 @@
                 <div>Phone number: <asp:TextBox ID="tbPhone" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <h2>Account type</h2>
+            If you wish to list produce, create a Farmer accout.
             <div class="right-aligned-sub-box">               
-                <div><asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" /></div>
+                <div>
+                    <asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account"/></div>
             </div>
              <h2>Shipping</h2>
             <div class="right-aligned-sub-box">
