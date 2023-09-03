@@ -27,5 +27,12 @@ namespace CMPG223_Group_13.System_Classes
         {
             return $"{produceName} {quantity}{UOM} {price:C}";
         }
+
+        public string ToString(string type)
+        {
+            // create formatted text for output on order summary
+            if (type.ToLower() == "order") return string.Format("{0,-15}{1,-10}{2,-10}{3,10}", produceName, quantity, UOM, price.ToString("C"));
+            else return ToString();
+        }
     }
 }

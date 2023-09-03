@@ -17,7 +17,7 @@ namespace CMPG223_Group_13
         {
             if (Session["User"] == null) Response.Redirect("~/default.aspx");
             cartItems = (ArrayList)Session["Cart"];
-            if (cartItems != null && cartItems.Count > 0) setCartPage(true);
+            if (cartItems?.Count > 0) setCartPage(true);
             else setCartPage(false);     
         }
 
