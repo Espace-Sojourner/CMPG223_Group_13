@@ -15,9 +15,10 @@ namespace CMPG223_Group_13
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validating User session object
             if (Session["User"] != null)
             {
-                // send to dashboard
+                //Redirecting to Dashboard page
                 Response.Redirect("~/dashboard.aspx");
             }
         }
@@ -25,44 +26,41 @@ namespace CMPG223_Group_13
         protected void btnLogin_Click(object sender, EventArgs e)
         {
 
-            //check if a radiobutton is selected
-            if (rbtnClient.Checked || rbtnFarmer.Checked)
+            User user = null;
+            string email = tbEmail.Text.ToLower();
+            string password = tbPassword.Text;
+
+            //Getting correct UserType
+            if (rbtnClient.Checked)
             {
-                User user = null;
-                string email = tbEmail.Text.ToLower();
-                string password = tbPassword.Text;
+                user = getClientByEmail(email);
+            }
+            else if (rbtnFarmer.Checked)
+            {
+                user = getFarmerByEmail(email);
+            }
 
-                //find login type
-                if (rbtnClient.Checked)
-                {
-                    user = getClientByEmail(email);
-                }
-                else if (rbtnFarmer.Checked)
-                {
-                    user = getFarmerByEmail(email);
-                }
+            if (user.User_Password == password)
+            {
+                //Setting User session object
+                Session["User"] = user;
 
-                if (user.User_Password == password)
-                {
-                    Session["User"] = user;
-
-                    // send to dashboard
-                    Response.Redirect("~/dashboard.aspx");
-                }
-                else
-                {
-                    lblError.Text = "Invalid user info";
-                }
-
+                //Redirecting to Dashboard page
+                Response.Redirect("~/dashboard.aspx");
             }
             else
             {
-                lblError.Text = "Please select a login type";
+                //Showing error and resetting password field
+                lblError.Text = "Invalid user information has been entered, try again.";
+                tbPassword.Text = "";
+                tbPassword.Focus();
             }
+
         }
 
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
+            //Redirecting to Create Account page
             Response.Redirect("~/create-account.aspx");
         }
     }

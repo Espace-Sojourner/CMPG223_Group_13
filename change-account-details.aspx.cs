@@ -13,26 +13,26 @@ namespace CMPG223_Group_13
 {
     public partial class change_account_details : System.Web.UI.Page
     {
-        User user;
-        Bank_Account_Info bank;
-        Farm farm;
-        private bool isFarmer = false, isAdmin = true;
+        private User user;
+        private Bank_Account_Info bank;
+        private Farm farm;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // get all user details
+            //Getting logged in user object from session
             user = getSessionUser();
-            if (user.UserType != UserType.Admin)
+
+            //Validating UserType and getting relative information
+            if (user.isAdmin())
             {
-                isAdmin = false;
                 bank = Bank_Account_Info.getByUserID(user.User_ID);
             }
-            if (user.UserType == UserType.Farmer)
+            if (user.isFarmer())
             {
-                isFarmer = true;
                 farm = Farm.getByID(user.User_ID);
             }
 
+            //Filling in data if the PageLoad is not a postback
             if(!Page.IsPostBack)
             {
                 prefillData();
@@ -40,89 +40,91 @@ namespace CMPG223_Group_13
             
         }
 
-        // NOTE: could possibly add the below method to the User class to be accessed by all forms
         protected User getSessionUser()
         {
-            //returns user if logged in otherwise redirects to login
+            //Returns user if logged in otherwise redirects to login
             if (Session["User"] == null) Response.Redirect("~/default.aspx");
             return (User)Session["User"];            
         }
 
         protected void prefillData()
         {
-            // user data
+            //Filling textboxes with data from logged in user
             tbFirstname.Text = user.First_Name;
             tbLastname.Text = user.Last_Name;
             tbEmail.Text = user.Email_Address;
             tbPhone.Text = user.Phone_Number;
             tbShippingAddress.Text = user.Shipping_Address;
 
-            // bank info
-            tbBankName.Text = (isAdmin) ? "N/A" : bank.Bank_Name;
-            tbAccountNumber.Text = (isAdmin) ? "N/A" : bank.Account_Number;
+            tbBankName.Text = user.isAdmin() ? "N/A" : bank.Bank_Name;
+            tbAccountNumber.Text = user.isAdmin() ? "N/A" : bank.Account_Number;
 
-            // farm info
-            tbFarmName.Text = (isFarmer) ? farm.Farm_Name : "N/A";
-            tbFarmAddress.Text = (isFarmer) ? farm.Farm_Address : "N/A";
+            tbFarmName.Text = user.isFarmer() ? farm.Farm_Name : "N/A";
+            tbFarmAddress.Text = user.isFarmer() ? farm.Farm_Address : "N/A";
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            // --- entries ---
-            // user details
+            //Getting data from textboxes and storing them in varbiales
             string firstName = tbFirstname.Text,
                 lastName = tbLastname.Text,
                 email = tbEmail.Text,
                 phone = tbPhone.Text,
                 address = tbShippingAddress.Text,
-                oldPassword = tbOldPassword.Text,
                 password = user.User_Password;
 
-            // user entered password
-            if (!string.IsNullOrEmpty(oldPassword))
+            //Validating that the old password is the users current password
+            if (user.User_Password == tbOldPassword.Text)
             {
-                // validate old password
-                string cmd = $"select * from {user.UserType} where Email_Address = '{user.Email_Address}' and Password = '{oldPassword}'";
-                DataTable dt = DatabaseHandler.executeSelectToDT(cmd);
-                // create new password
-                if (dt.Rows.Count != 0 && !string.IsNullOrEmpty(tbNewPassword.Text)) password = tbNewPassword.Text;
+                password = tbNewPassword.Text;
             }
 
-            // bank info
-            string bankName = tbBankName.Text, accNumber = tbAccountNumber.Text;
-            // farm info 
-            string farmName = tbFarmName.Text, farmAddress = tbFarmAddress.Text;
+            //Getting entered bank account information
 
-            // create new user
+            string bankName = tbBankName.Text, 
+                accNumber = tbAccountNumber.Text;
+
+            //Getting entered farm information
+            string farmName = tbFarmName.Text, 
+                farmAddress = tbFarmAddress.Text;
+
+            //Creating user with updated information
             User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,password);
 
-            //update user
-            if (isFarmer)
+            //Validating UserType to update the correct table
+            if (user.isFarmer())
             {
+                //Updating farmer with entered data
                 updateFarmer(newUser);
-                Farm newFarm = new Farm(farm.Farm_ID, user.User_ID, farmName, farmAddress);                
-                Farm.updateInDB(newFarm);
-                Session["User"] = getFarmerByID(user.User_ID); // update Session
+
+                //Updating farm type with the new details
+                Farm newFarm = new Farm(farm.Farm_ID, user.User_ID, farmName, farmAddress);
+                Farm.updateInDB(newFarm);             
             }
             else
             {
+                //Updating client with entered data
                 updateClient(newUser);
-                Session["User"] = getClientByID(user.User_ID); // update Session
             }
 
-            // update bank if applicable
-            if (!isAdmin)
+            //Updating Session user object
+            Session["User"] = newUser;
+            
+            //Updating bank account information if applicable
+            if (user.isAdmin())
             {
-                Bank_Account_Info newBank = new Bank_Account_Info(bank.Bank_Account_ID, (isFarmer) ? user.User_ID : -1, (isFarmer) ? -1 : user.User_ID, bankName, accNumber);
+                //Creating bank account info object from entered data
+                Bank_Account_Info newBank = new Bank_Account_Info(bank.Bank_Account_ID, user.isFarmer() ? user.User_ID : -1, user.isClient() ? user.User_ID : -1, bankName, accNumber);
                 Bank_Account_Info.updateInDB(newBank);
             }
 
-            // send to dashboard
+            //Redirecting to dashboard page
             Response.Redirect("~/dashboard.aspx");
         }
 
         protected void cbChangePassword_CheckedChanged(object sender, EventArgs e)
         {
+            //Chaning the visibility of new password and old password text field according to checkbox
             if (cbChangePassword.Checked)
             {
                 lblNewPassword.Visible = true;
