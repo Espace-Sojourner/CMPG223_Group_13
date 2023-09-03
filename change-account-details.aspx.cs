@@ -79,7 +79,7 @@ namespace CMPG223_Group_13
             if (!string.IsNullOrEmpty(oldPassword))
             {
                 // validate old password
-                string cmd = $"select * from {user.UserType.ToString()} where Email_Address = '{user.Email_Address}' and Password = '{oldPassword}'";
+                string cmd = $"select * from '{user.UserType}' where Email_Address = '{user.Email_Address}' and Password = '{oldPassword}'";
                 DataTable dt = DatabaseHandler.executeSelectToDT(cmd);
                 // create new password
                 if (dt.Rows.Count != 0 && !string.IsNullOrEmpty(tbNewPassword.Text)) password = tbNewPassword.Text;
