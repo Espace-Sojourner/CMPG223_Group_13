@@ -50,5 +50,10 @@ namespace CMPG223_Group_13
         {
             Response.Redirect("~/browse-produce.aspx");
         }
+
+        protected void btnAddPRoduce_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/add-produce");
+        }
     }
 }

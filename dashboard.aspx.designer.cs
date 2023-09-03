@@ -42,6 +42,15 @@ namespace CMPG223_Group_13
         protected global::System.Web.UI.WebControls.Button btnBrowse;
 
         /// <summary>
+        /// btnAddPRoduce control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddPRoduce;
+
+        /// <summary>
         /// btnManageListings control.
         /// </summary>
         /// <remarks>
