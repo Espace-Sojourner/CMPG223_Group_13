@@ -18,7 +18,6 @@ namespace CMPG223_Group_13
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine(updateCmd);
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand(updateCmd, con);
