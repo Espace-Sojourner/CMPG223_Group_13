@@ -107,5 +107,10 @@ namespace CMPG223_Group_13
             Session["LP_ID"] = null;
             Response.Redirect("~/cart.aspx");
         }
+
+        protected void btnBacktoBrowse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/browse-produce.aspx");
+        }
     } 
 }
