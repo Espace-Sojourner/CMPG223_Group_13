@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,6 +36,10 @@ namespace CMPG223_Group_13
             //Chaning form to contain correct details
             lblAdded.Visible = false;
             imgProduce.ImageUrl = produce.Image_Link;
+            if (File.Exists(produce.Image_Link))
+                imgProduce.ImageUrl = produce.Image_Link;
+            else
+                imgProduce.ImageUrl = "./Default.png";
             lblProduceName.Text = produce.Produce_Name;
             lblFarmer.Text = $"Sold by {farmer.First_Name} {farmer.Last_Name}";
             lblDescription.Text = produce.Description;

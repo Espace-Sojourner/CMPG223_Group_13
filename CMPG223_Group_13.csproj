@@ -83,10 +83,9 @@
     <Content Include="dashboard.aspx" />
     <Content Include="default.aspx" />
     <Content Include="general.css" />
-    <Content Include="list-produce.aspx" />
     <Content Include="listing-details.aspx" />
     <Content Include="Onion.jpg" />
-    <Content Include="Resources\ProduceImages\Default.png" />
+    <Content Include="Default.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +145,6 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="list-produce.aspx.cs">
-      <DependentUpon>list-produce.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="list-produce.aspx.designer.cs">
-      <DependentUpon>list-produce.aspx</DependentUpon>
-    </Compile>
     <Compile Include="listing-details.aspx.cs">
       <DependentUpon>listing-details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,7 +172,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\ProduceImages\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
