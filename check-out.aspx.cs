@@ -39,7 +39,7 @@ namespace CMPG223_Group_13
                     totalPrice += item.price;
                     // add to pending payments
                     int farmerID = Listed_Produce.getByID(item.LP_ID).Farmer_ID;
-                    Bank_Account_Info farmerAccount = Bank_Account_Info.getByID(farmerID);
+                    Bank_Account_Info farmerAccount = Bank_Account_Info.getByUserID(farmerID);
                     string banking = farmerAccount.Bank_Name + ": " + farmerAccount.Account_Number;
                     awaitingPayments += $"Payment of {item.price:C} to {banking}\n";
                 }
