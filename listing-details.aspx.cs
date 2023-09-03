@@ -16,8 +16,7 @@ namespace CMPG223_Group_13
         User farmer;
         Produce produce;
         Unit_of_Measure uom;
-        int tempAvailable;
-        Cart_Item prevItem;
+        static Cart_Item prevItem;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,8 +30,6 @@ namespace CMPG223_Group_13
             farmer = getFarmerByID(listing.Farmer_ID);
             produce = Produce.getByID(listing.Produce_ID);
             uom = Unit_of_Measure.getByID(produce.UOM_ID);
-            // tempAvailable keeps track of available produce in case user adds to cart more than once
-            tempAvailable = listing.Available_Quantity; 
 
             // --- FILL LISTING DETAILS ---
 
@@ -42,7 +39,7 @@ namespace CMPG223_Group_13
             lblFarmer.Text = $"Sold by {farmer.First_Name} {farmer.Last_Name}";
             lblDescription.Text = produce.Description;
             lblPrice.Text = $"{listing.Price:C} per {uom.Abbreviation}";
-            if (!IsPostBack) lblAvailable.Text = listing.Available_Quantity.ToString();
+            lblAvailable.Text = listing.Available_Quantity.ToString();
             lblExpiration.Text = listing.Expiration_Dates.ToShortDateString();
         }
 
@@ -50,7 +47,6 @@ namespace CMPG223_Group_13
         {
             addListingToCart();
             lblAdded.Visible = true;
-            lblAvailable.Text = tempAvailable.ToString();
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
@@ -66,10 +62,9 @@ namespace CMPG223_Group_13
             double price; // quantity times price per UOM
             bool isCorrect = false; // quantity validation
             if (int.TryParse(tbQuantity.Text, out quantity))
-                if (quantity <= tempAvailable && quantity > 0)
+                if (quantity <= listing.Available_Quantity && quantity > 0)
                 {
-                    isCorrect = true;
-                    tempAvailable -= quantity; // reduces available quantity locally (not in DB)                   
+                    isCorrect = true;         
                     price = quantity * listing.Price;
                     
                     Cart_Item item;

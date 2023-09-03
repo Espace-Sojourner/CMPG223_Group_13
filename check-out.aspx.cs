@@ -30,7 +30,7 @@ namespace CMPG223_Group_13
             cartItems = (ArrayList)Session["Cart"];
             if (cartItems?.Count > 0)
             {
-                txtSummary.Value = string.Format("{0,-15}{1,-10}{2,-10}{3,10}","Produce","Quantity","UOM","Price");
+                txtSummary.Value = string.Format("{0,-15}{1,-10}{2,-10}{3,10}\n","Produce","Quantity","UOM","Price");
                 foreach (Cart_Item item in cartItems)
                 {
                     // display item summary
