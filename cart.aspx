@@ -11,7 +11,7 @@
         <div>
             <asp:Label ID="lblHeading" runat="server" Text="Your cart"></asp:Label>
             <br />
-            <asp:ListBox ID="lstCart" runat="server" Height="199px" Width="420px"></asp:ListBox>
+            <asp:ListBox ID="lstCart" runat="server" Height="200px" Width="420px"></asp:ListBox>
             <br />
             <asp:Button ID="btnRemove" runat="server" OnClick="btnRemove_Click" Text="Remove item" Width="210px" />
             <asp:Button ID="btnClearCart" runat="server" OnClick="btnClearCart_Click" Text="Clear cart" Width="210px" />

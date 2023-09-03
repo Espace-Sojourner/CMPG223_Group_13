@@ -42,7 +42,7 @@ namespace CMPG223_Group_13
             lblFarmer.Text = $"Sold by {farmer.First_Name} {farmer.Last_Name}";
             lblDescription.Text = produce.Description;
 
-            // UOM class has to be adapted to store more than one UOM_ID
+            // NOTE: Produce class has to be adapted to store more than one UOM_ID
             // Only a single UOM is stored per produce for now
             ddlUOM.Items.Add(uom.UOM_Name);
             ddlUOM.SelectedValue = uom.UOM_Name;
@@ -75,7 +75,7 @@ namespace CMPG223_Group_13
             double price; // quantity times price per UOM
             bool isCorrect = false; // quantity validation
             if (int.TryParse(tbQuantity.Text, out quantity))
-                if (quantity <= tempAvailable)
+                if (quantity <= tempAvailable && quantity > 0)
                 {
                     isCorrect = true;
                     tempAvailable -= quantity; // reduces available quantity locally (not in DB)                   
@@ -87,12 +87,12 @@ namespace CMPG223_Group_13
                         // remove previous item
                         ((ArrayList)Session["Cart"]).Remove(prevItem);
                         // create updated cart item with new quantity and price
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity + prevItem.quantity, uom.UOM_ID, price + prevItem.price);
+                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity + prevItem.quantity, uom.Abbreviation, price + prevItem.price);
                     }
                     else
                     {
                         // create cart item
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.UOM_ID, price);                                           
+                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.Abbreviation, price);                                           
                     }
                     // add item to cart  
                     ((ArrayList)Session["Cart"]).Add(item);
