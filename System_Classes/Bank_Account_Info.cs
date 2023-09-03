@@ -37,6 +37,14 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        public static Bank_Account_Info getByUserID(int ID)
+        {
+            string sql = $"SELECT * FROM Bank_Account_Info WHERE Farmer_ID = {ID} OR Client_ID = {ID}";
+            DataTable dt = DatabaseHandler.executeSelectToDT(sql);
+            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+            else return null;
+        }
+
         public static bool Exists(Bank_Account_Info info)
         {
             if (getByID(info.Bank_Account_ID) == null) return false;
@@ -53,7 +61,7 @@ namespace CMPG223_Group_13
             else
             {
                 string sql = $"INSERT INTO Bank_Account_Info (Farmer_ID, Client_ID, Bank_name, Account_Number) " +
-                    $"VALUES ({(info.Farmer_ID == -1 ? null : info.Farmer_ID)}, {(info.Client_ID == -1 ? null : info.Client_ID)}, '{info.Bank_Name}', '{info.Account_Number}')";
+                    $"VALUES ({(info.Farmer_ID == -1 ? "NULL" : info.Farmer_ID)}, {(info.Client_ID == -1 ? "NULL" : info.Client_ID)}, '{info.Bank_Name}', '{info.Account_Number}')";
                 DatabaseHandler.executeInsert(sql);
             }
         }
@@ -102,8 +110,8 @@ namespace CMPG223_Group_13
 
         //Returns Bank_Account_Info object from DataRow
         public static Bank_Account_Info RowToData(DataRow Row)
-        {
-            return new Bank_Account_Info((int)Row["Bank_Account_ID"], (int)Row["Farmer_ID"], (int)Row["Client_ID"], Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
+        { 
+            return new Bank_Account_Info((int)Row["Bank_Account_ID"], (!Row.IsNull("Farmer_ID")) ? (int)Row["Farmer_ID"] : -1, (!Row.IsNull("Client_ID")) ? (int)Row["Client_ID"] : -1, Row["Bank_Name"].ToString(), Row["Account_Number"].ToString());
         }
 
 

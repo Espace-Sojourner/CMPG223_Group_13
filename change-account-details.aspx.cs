@@ -25,7 +25,7 @@ namespace CMPG223_Group_13
             if (user.UserType != UserType.Admin)
             {
                 isAdmin = false;
-                bank = Bank_Account_Info.getByID(user.User_ID);
+                bank = Bank_Account_Info.getByUserID(user.User_ID);
             }
             if (user.UserType == UserType.Farmer)
             {
