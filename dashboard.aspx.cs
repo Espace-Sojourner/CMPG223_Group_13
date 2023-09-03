@@ -19,7 +19,7 @@ namespace CMPG223_Group_13
             {
                 lblWelcome.Text = "Welcome, " + user.First_Name + " " + user.Last_Name;
                 //Displaying correct buttons according to the UserType of the logged in User
-                if (user.isFarmer())
+                if (!user.isFarmer())
                 {
                     btnManageListings.Visible = true;
                     btnBrowse.Visible = false;
