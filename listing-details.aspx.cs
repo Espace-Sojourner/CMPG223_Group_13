@@ -12,12 +12,10 @@ namespace CMPG223_Group_13
 {
     public partial class listing_details : System.Web.UI.Page
     {
-
         private Listed_Produce listing;
         private User farmer;
         private Produce produce;
         private Unit_of_Measure uom;
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,7 +64,6 @@ namespace CMPG223_Group_13
                 //Validating quantity
                 if (quantity <= listing.Available_Quantity && quantity > 0)
                 {
-
                     price = quantity * listing.Price;
 
                     //Creating quantity 
