@@ -12,7 +12,7 @@
             <h1>Create account</h1>
             <h2>Account details</h2>
             <div class="right-aligned-sub-box">  
-                <div>Username: <asp:TextBox ID="tbUsername" runat="server" Width="150px"></asp:TextBox></div>
+                <div></div>
                 <div>Password: <asp:TextBox ID="tbPassword" runat="server" Width="150px" TextMode="Password"></asp:TextBox></div>
                 <div>Repeat password: <asp:TextBox ID="tbConfirmPassword" runat="server" Width="150px" TextMode="Password"></asp:TextBox></div>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="The passwords don't match" ControlToCompare="tbPassword" ControlToValidate="tbConfirmPassword"></asp:CompareValidator>
@@ -25,8 +25,10 @@
                 <div>Phone number: <asp:TextBox ID="tbPhone" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <h2>Account type</h2>
+            If you wish to list produce, create a Farmer accout.
             <div class="right-aligned-sub-box">               
-                <div><asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account" /></div>
+                <div>
+                    <asp:CheckBox ID="cbFarmerAccount" runat="server" Text="Farmer account"/></div>
             </div>
              <h2>Shipping</h2>
             <div class="right-aligned-sub-box">
@@ -43,7 +45,8 @@
                 <div>Farm address: <asp:TextBox ID="tbFarmAddress" runat="server" Width="150px"></asp:TextBox></div>
             </div>
             <div class="right-aligned-sub-box">               
-                <div><asp:Button ID="btnCreate" runat="server" Text="Create Account" /></div>
+                <div>
+                    <asp:Button ID="btnCreate" runat="server" Text="Create Account" OnClick="btnCreate_Click" /></div>
             </div>
 
         </div>
