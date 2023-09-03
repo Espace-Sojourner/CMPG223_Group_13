@@ -22,6 +22,7 @@ namespace CMPG223_Group_13
             this.Farm_Address = Farm_Address;
         }
 
+        //Getting object from database by ID
         public static Farm getByID(int ID)
         {
             string sql = $"SELECT * FROM Farm WHERE Farm_ID = {ID}";
@@ -30,6 +31,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by ID
         public static Farm getByUserID(int ID)
         {
             string sql = $"SELECT * FROM Farm WHERE Farmer_ID = {ID}";
@@ -38,6 +40,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Farm farm)
         {
             if (getByID(farm.Farm_ID) == null) return false;

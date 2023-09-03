@@ -24,6 +24,7 @@ namespace CMPG223_Group_13
             this.Account_Number = Account_Number;
         }
 
+        //Getting object from database by ID
         public static Bank_Account_Info getByID(int ID)
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Bank_Account_ID = {ID}";
@@ -32,6 +33,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by ID
         public static Bank_Account_Info getByClientID(int ID)
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Client_ID = {ID}";
@@ -40,6 +42,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Getting object from database by ID
         public static Bank_Account_Info getByFarmerID(int ID)
         {
             string sql = $"SELECT * FROM Bank_Account_Info WHERE Farmer_ID = {ID}";
@@ -48,6 +51,7 @@ namespace CMPG223_Group_13
             else return null;
         }
 
+        //Checking if object exists in database
         public static bool Exists(Bank_Account_Info info)
         {
             if (getByID(info.Bank_Account_ID) == null) return false;
