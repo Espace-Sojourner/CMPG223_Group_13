@@ -63,47 +63,47 @@ namespace CMPG223_Group_13
             double price; //Quantity times price per UOM
             if (int.TryParse(tbQuantity.Text, out quantity))
             {
-                //Validating quantity
-                if (quantity <= listing.Available_Quantity && quantity > 0)
+
+                price = quantity * listing.Price;
+
+                //Creating quantity 
+                Cart_Item item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.Abbreviation, price);
+
+                //Getting Cart object from session and setting local variable
+                List<Cart_Item> localList = (List<Cart_Item>)Session["Cart"];
+                if (localList.Find(itm => itm.LP_ID == item.LP_ID) != null)
                 {
-                    price = quantity * listing.Price;
+                    //Updating cart item
+                    Cart_Item updatedItem = localList[localList.FindIndex(itm => itm.LP_ID == item.LP_ID)];
+                    updatedItem.quantity += quantity;
+                    quantity = updatedItem.quantity;
 
-                    //Creating quantity 
-                    Cart_Item item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.Abbreviation, price);
-
-                    //Getting Cart object from session and setting local variable
-                    List<Cart_Item> localList = (List<Cart_Item>)Session["Cart"];
-                    if (localList.Contains(item))
-                    {
-                        //Updating cart item
-                        Cart_Item updatedItem = localList[localList.IndexOf(item)];
-                        updatedItem.quantity += quantity;
-
-                        //Setting updated item in list
-                        localList[localList.IndexOf(item)] = updatedItem;
-                    }
-                    else
-                    {
-                        //Adding cart item to cart item list
-                        localList.Add(item);
-                    }
-
-                    //Setting Cart object session from local variable
-                    Session["Cart"] = localList;
-                    lblAdded.Visible = true;
+                    //Setting updated item in list
+                    localList[localList.FindIndex(itm => itm.LP_ID == item.LP_ID)] = updatedItem;
                 }
                 else
                 {
-                    if (quantity > 0)
-                    {
-                        lblError.Text = "The quantity entered is more than what is currently available";
-                    }
-                    else
-                    {
-                        lblError.Text = "Enter a quantity more than 0";
-                    }
+                    //Adding cart item to cart item list
+                    localList.Add(item);
+                }
+
+                if (quantity > listing.Available_Quantity)
+                {
+                    lblError.Text = "The quantity entered is more than what is currently available";
                     tbQuantity.Text = "";
                     tbQuantity.Focus();
+                }
+                else if (quantity == 0)
+                {
+                    lblError.Text = "Enter a quantity more than 0";
+                    tbQuantity.Text = "";
+                    tbQuantity.Focus();
+                }
+                else
+                {
+                    //Setting Cart object session from local variable
+                    Session["Cart"] = localList;
+                    lblAdded.Visible = true;
                 }
             }
             else

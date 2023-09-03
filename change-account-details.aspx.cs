@@ -23,9 +23,14 @@ namespace CMPG223_Group_13
             user = getSessionUser();
 
             //Validating UserType and getting relative information
-            if (!user.isAdmin())
+
+            if (user.isClient())
             {
-                bank = Bank_Account_Info.getByUserID(user.User_ID);
+                bank = Bank_Account_Info.getByClientID(user.User_ID);
+            }
+            else
+            {
+                bank = Bank_Account_Info.getByFarmerID(user.User_ID);
             }
             if (user.isFarmer())
             {
