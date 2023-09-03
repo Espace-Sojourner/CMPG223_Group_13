@@ -18,7 +18,7 @@ namespace CMPG223_Group_13
     {
         ArrayList cartItems;
         User user;
-        double totalPrice = 0;
+        double totalPrice;
         string awaitingPayments;
         protected void Page_Load(object sender, EventArgs e)
         {

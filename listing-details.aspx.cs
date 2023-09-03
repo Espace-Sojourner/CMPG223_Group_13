@@ -41,18 +41,9 @@ namespace CMPG223_Group_13
             lblProduceName.Text = produce.Produce_Name;
             lblFarmer.Text = $"Sold by {farmer.First_Name} {farmer.Last_Name}";
             lblDescription.Text = produce.Description;
-
-            // NOTE: Produce class has to be adapted to store more than one UOM_ID
-            // Only a single UOM is stored per produce for now
-            ddlUOM.Items.Add(uom.UOM_Name);
-            ddlUOM.SelectedValue = uom.UOM_Name;
-            // produce price - effect of UOM?
-            lblPrice.Text = $"{listing.Price:C} per {ddlUOM.SelectedValue}";
-            // available quantity - effect of UOM?
-            lblAvailable.Text = listing.Available_Quantity.ToString();
-
+            lblPrice.Text = $"{listing.Price:C} per {uom.Abbreviation}";
+            if (!IsPostBack) lblAvailable.Text = listing.Available_Quantity.ToString();
             lblExpiration.Text = listing.Expiration_Dates.ToShortDateString();
-
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
@@ -115,14 +106,6 @@ namespace CMPG223_Group_13
             // redirect to cart
             Session["LP_ID"] = null;
             Response.Redirect("~/cart.aspx");
-        }
-
-        protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // produce price - effect of UOM?
-            lblPrice.Text = $"{listing.Price:C} per {ddlUOM.SelectedValue}";
-            // available quantity - effect of UOM?
-            lblAvailable.Text = listing.Available_Quantity.ToString();
         }
 
         protected void btnBacktoBrowse_Click(object sender, EventArgs e)
