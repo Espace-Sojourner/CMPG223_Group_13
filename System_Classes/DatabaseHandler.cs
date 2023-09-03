@@ -19,15 +19,16 @@ namespace CMPG223_Group_13
         {
             try
             {
-                con.Open();
+                con.Open(); //Opening database connection
 
                 SqlCommand cmd = new SqlCommand(updateCmd, con);
 
+                //Setting update command and executing command
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.UpdateCommand = cmd;
                 da.UpdateCommand.ExecuteReader();
 
-                con.Close();
+                con.Close(); //Closing database connection
             }
             catch (SqlException er) {
                 System.Diagnostics.Debug.WriteLine(er.Message);
@@ -41,15 +42,16 @@ namespace CMPG223_Group_13
         {
             try
             {
-                con.Open();
+                con.Open(); //Opening database connection
 
                 SqlCommand cmd = new SqlCommand(insertCmd, con);
 
+                //Setting insert command and executing command
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.InsertCommand = cmd;
                 da.InsertCommand.ExecuteReader();
 
-                con.Close();
+                con.Close(); //Closing database connection
             }
             catch (SqlException er) {
                 System.Diagnostics.Debug.WriteLine(er.Message);
@@ -72,15 +74,16 @@ namespace CMPG223_Group_13
         {
             try
             {
-                con.Open();
+                con.Open(); //Opening database connection
 
                 SqlCommand cmd = new SqlCommand(deleteCmd, con);
 
+                //Setting delete command and executing command
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.DeleteCommand = cmd;
                 da.DeleteCommand.ExecuteReader();
 
-                con.Close();
+                con.Close(); //Closing database connection
             }
             catch (SqlException er) {
                 System.Diagnostics.Debug.WriteLine(er.Message);
@@ -95,10 +98,11 @@ namespace CMPG223_Group_13
         {
             try
             {
-                con.Open();
+                con.Open(); //Opening database connection
 
                 SqlCommand cmd = new SqlCommand(selectCmd, con);
 
+                //Setting select command and executing command
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = cmd;
 
@@ -106,7 +110,7 @@ namespace CMPG223_Group_13
 
                 da.Fill(ds, tableName);
 
-                con.Close();
+                con.Close(); //Closing database connection
 
                 return ds;
             }
@@ -136,7 +140,7 @@ namespace CMPG223_Group_13
         {
             try
             {
-                con.Open();
+                con.Open(); //Opening database connection
 
                 SqlCommand cmd = new SqlCommand(selectCmd, con);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -144,7 +148,7 @@ namespace CMPG223_Group_13
                 DataTable tab = new DataTable();
                 tab.Load(dr);
 
-                con.Close();
+                con.Close(); //Closing database connection
 
                 return tab;
             }
@@ -185,34 +189,5 @@ namespace CMPG223_Group_13
          *        // If the only one object is needed or returned dt.Rows[0]["ColumnName"] can be used.
          * 
          */
-
-        //reads values to a dropdownlist. simply pass select command, the name of the field you want to read and ref to dropdownlist
-        public static void readToDDL(string selectCmd, string fieldname, ref DropDownList ddl)
-        {
-            try
-            {
-                ddl.Items.Clear(); //clear any potential previous entries
-
-                //open connection
-                con.Open();
-
-                SqlCommand command = new SqlCommand(selectCmd, con);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                //add entries to dropdown list
-                ddl.Items.Add(new ListItem(" ")); //add blank item at top to force user to select an option
-
-                while (reader.Read())
-                {
-                    ddl.Items.Add(new ListItem(reader[fieldname].ToString()));
-                }
-
-                con.Close(); //close connection
-            }
-            catch (SqlException er) { }
-            finally { con.Close(); }
-        }
-
     }
 }

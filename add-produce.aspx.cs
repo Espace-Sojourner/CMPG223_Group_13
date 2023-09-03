@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,16 +10,26 @@ namespace CMPG223_Group_13
 {
     public partial class add_produce : System.Web.UI.Page
     {
+        //List of all produce
+        private List<Produce> produce = new List<Produce>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            DatabaseHandler.readToDDL(@"SELECT * FROM Produce", "Produce_Name", ref ddlProduce);
+            DataTable dt = DatabaseHandler.executeSelectToDT("SELECT * FROM Produce");
+            foreach (DataRow dr in dt.Rows)
+            {
+                //Adding row to list of produce
+                produce.Add(Produce.RowToData(dr));
+                ddlProduce.Items.Add(dr["Produce_Name"].ToString());
+            }
         }
 
         protected void btnSubmitListing_Click(object sender, EventArgs e)
         {
-            //validate input
+            //Validating that produce has not expired
             if(calExpirationDate.SelectedDate <= DateTime.Today)
             {
+                //Showing error 
                 lblError.Text = "Invalid Date. Produce is already expired or expires today cannot be posted";
             }
             else
@@ -26,7 +37,7 @@ namespace CMPG223_Group_13
                 int quantity;
                 float price;
 
-                //validate input
+                //Validating input for valid integers
                 if(int.TryParse(tbQuantity.Text, out quantity))
                 {
                     if(float.TryParse(tbPrice.Text, out price))
@@ -35,12 +46,13 @@ namespace CMPG223_Group_13
                         {
                             if(price > 0)
                             {
-                                //grab input and save to database
-
-                                Produce produce = Produce.getByID(ddlProduce.SelectedIndex + 1);
+                                //Getting the selected produce from drop down list
+                                Produce prod = produce[ddlProduce.SelectedIndex];
                                 int farmerid = ((User)Session["User"]).User_ID;
                                 DateTime expiration = calExpirationDate.SelectedDate;
-                                DatabaseHandler.executeInsert($"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) VALUES({farmerid}, {produce.Produce_ID}, {price}, {quantity}, '{expiration}')");
+
+                                //Inserting Listed Produce into listed produce table in database
+                                DatabaseHandler.executeInsert($"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) VALUES({farmerid}, {prod.Produce_ID}, {price}, {quantity}, '{expiration}')");
                             }
                             else
                             {
