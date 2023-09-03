@@ -27,6 +27,7 @@
             <asp:Label ID="lblError" runat="server" Font-Bold="False" Font-Italic="True" ForeColor="Red"></asp:Label>
             <asp:Calendar ID="calExpirationDate" runat="server"></asp:Calendar>
             <asp:Button ID="btnSubmitListing" runat="server" Height="54px" OnClick="btnSubmitListing_Click" Text="Submit Listing" Width="200px" />
+            <asp:Button ID="btnBack" runat="server" Height="54px" OnClick="btnBack_Click" Text="Back" Width="200px" />
         </div>
     </form>
 </body>

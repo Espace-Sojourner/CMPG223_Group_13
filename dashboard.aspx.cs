@@ -57,12 +57,6 @@ namespace CMPG223_Group_13
             Response.Redirect("~/change-account-details.aspx");
         }
 
-        protected void btnManageListings_Click(object sender, EventArgs e)
-        {
-            //Redirecting to list produce page
-            Response.Redirect("~/list-produce.aspx");
-        }
-
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
             //Redirecting to browse produce page

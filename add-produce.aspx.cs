@@ -53,6 +53,7 @@ namespace CMPG223_Group_13
 
                                 //Inserting Listed Produce into listed produce table in database
                                 DatabaseHandler.executeInsert($"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) VALUES({farmerid}, {prod.Produce_ID}, {price}, {quantity}, '{expiration}')");
+                                Response.Redirect("~/dashboard.aspx");
                             }
                             else
                             {
@@ -76,6 +77,11 @@ namespace CMPG223_Group_13
                 }
                 
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/dashboard.aspx");
         }
     }
 }
