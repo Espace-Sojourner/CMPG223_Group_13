@@ -52,7 +52,10 @@ namespace CMPG223_Group_13
 
                 con.Close();
             }
-            catch (SqlException er) { }
+            catch (SqlException er) {
+                System.Diagnostics.Debug.WriteLine(er.Message);
+                System.Diagnostics.Debug.WriteLine(insertCmd);
+            }
             finally { con.Close(); }
         }
 
@@ -80,7 +83,10 @@ namespace CMPG223_Group_13
 
                 con.Close();
             }
-            catch (SqlException er) { }
+            catch (SqlException er) {
+                System.Diagnostics.Debug.WriteLine(er.Message);
+                System.Diagnostics.Debug.WriteLine(deleteCmd);
+            }
             finally { con.Close(); }
         }
 
@@ -105,7 +111,11 @@ namespace CMPG223_Group_13
 
                 return ds;
             }
-            catch (SqlException er) { return null; }
+            catch (SqlException er) {
+                System.Diagnostics.Debug.WriteLine(er.Message);
+                System.Diagnostics.Debug.WriteLine(selectCmd);
+                return null; 
+            }
             finally { con.Close(); }
         }
 
@@ -139,7 +149,11 @@ namespace CMPG223_Group_13
 
                 return tab;
             }
-            catch (SqlException er) { return null; }
+            catch (SqlException er) {
+                System.Diagnostics.Debug.WriteLine(er.Message);
+                System.Diagnostics.Debug.WriteLine(selectCmd);
+                return null; 
+            }
             finally { con.Close(); }
         }
 

@@ -62,8 +62,8 @@ namespace CMPG223_Group_13
                 string sql = $"UPDATE Listed_Produce SET " +
                     $"Farmer_ID = {lp.Farmer_ID}, " +
                     $"Produce_ID = {lp.Produce_ID}, " +
-                    $"Price = {lp.Price} " +
-                    $"Available_Quantity = {lp.Available_Quantity}" +
+                    $"Price = {lp.Price}, " +
+                    $"Available_Quantity = {lp.Available_Quantity}, " +
                     $"Expiration_Dates = '{lp.Expiration_Dates}' " +
                     $"WHERE LP_ID = {lp.LP_ID}";
                 DatabaseHandler.executeUpdate(sql);

@@ -63,8 +63,8 @@ namespace CMPG223_Group_13
                 string sql = $"UPDATE Order SET " +
                     $"Client_ID = {order.Client_ID}, " +
                     $"LP_ID = {order.LP_ID}, " +
-                    $"Order_Date = '{order.Order_ID}' " +
-                    $"Order_Price = {order.Order_Price}" +
+                    $"Order_Date = '{order.Order_ID}', " +
+                    $"Order_Price = {order.Order_Price}, " +
                     $"Bought_Quantity = {order.Bought_Quantity} " +
                     $"WHERE Order_ID = {order.Order_ID}";
                 DatabaseHandler.executeUpdate(sql);
