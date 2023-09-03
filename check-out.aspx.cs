@@ -60,8 +60,6 @@ namespace CMPG223_Group_13
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            //foreach (Cart_Item item in cartItems)
-            //{
             for (int i = 0; i < cartItems.Count; i++)
             { 
                 Cart_Item item = (Cart_Item)cartItems[i];
