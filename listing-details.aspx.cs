@@ -86,7 +86,6 @@ namespace CMPG223_Group_13
                         //Adding cart item to cart item list
                         localList.Add(item);
                     }
-                    System.Diagnostics.Debug.WriteLine(localList.Count);
 
                     //Setting Cart object session from local variable
                     Session["Cart"] = localList;            
@@ -95,6 +94,10 @@ namespace CMPG223_Group_13
                 {
                     tbQuantity.Focus();
                 }
+            }
+            else
+            {
+
             }
 
         }

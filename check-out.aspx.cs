@@ -16,10 +16,11 @@ namespace CMPG223_Group_13
 {
     public partial class check_out : System.Web.UI.Page
     {
-        ArrayList cartItems;
-        User user;
-        double totalPrice;
-        string awaitingPayments;
+        private List<Cart_Item> cartItems;
+        private User user;
+        private double totalPrice;
+        private string awaitingPayments;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // check login
@@ -27,7 +28,7 @@ namespace CMPG223_Group_13
             totalPrice = 0;
             awaitingPayments = "";
             user = (User)Session["User"];
-            cartItems = (ArrayList)Session["Cart"];
+            cartItems = (List<Cart_Item>)Session["Cart"];
             if (cartItems?.Count > 0)
             {
                 txtSummary.Value = string.Format("{0,-15}{1,-10}{2,-10}{3,10}\n","Produce","Quantity","UOM","Price");
