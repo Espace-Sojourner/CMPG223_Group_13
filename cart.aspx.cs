@@ -29,12 +29,10 @@ namespace CMPG223_Group_13
             btnClearCart.Visible = val;
             if (val)
             {
-                lblHeading.Text = "Your cart";
                 // add cart items
                 lstCart.Items.Clear();
                 foreach (Cart_Item item in cartItems) lstCart.Items.Add(item.ToString());
             }
-            else lblHeading.Text = "Your cart is empty";
         }
 
         protected void btnRemove_Click(object sender, EventArgs e)
