@@ -23,6 +23,7 @@ namespace CMPG223_Group_13
             user = getSessionUser();
 
             //Validating UserType and getting relative information
+
             if (user.isClient())
             {
                 bank = Bank_Account_Info.getByClientID(user.User_ID);
