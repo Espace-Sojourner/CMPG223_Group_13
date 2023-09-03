@@ -23,7 +23,7 @@ namespace CMPG223_Group_13
             user = getSessionUser();
 
             //Validating UserType and getting relative information
-            if (user.isAdmin())
+            if (!user.isAdmin())
             {
                 bank = Bank_Account_Info.getByUserID(user.User_ID);
             }
@@ -56,8 +56,8 @@ namespace CMPG223_Group_13
             tbPhone.Text = user.Phone_Number;
             tbShippingAddress.Text = user.Shipping_Address;
 
-            tbBankName.Text = !user.isAdmin() ? "N/A" : bank.Bank_Name;
-            tbAccountNumber.Text = !user.isAdmin() ? "N/A" : bank.Account_Number;
+            tbBankName.Text = user.isAdmin() ? "N/A" : bank.Bank_Name;
+            tbAccountNumber.Text = user.isAdmin() ? "N/A" : bank.Account_Number;
 
             tbFarmName.Text = user.isFarmer() ? farm.Farm_Name : "N/A";
             tbFarmAddress.Text = user.isFarmer() ? farm.Farm_Address : "N/A";
