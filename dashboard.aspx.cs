@@ -11,54 +11,67 @@ namespace CMPG223_Group_13
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["User"] != null)
+            //Getting logged in User object from session
+            User user = (User)Session["User"];
+
+            //Validating logged in user
+            if (user != null)
             {
-                lblWelcome.Text = "Welcome, " + ((User)Session["User"]).First_Name + " " + ((User)Session["User"]).Last_Name;
-                //check if user is farmer or not and hide/show buttons accordingly
-                if (((User)Session["User"]).UserType == UserType.Farmer)
+                lblWelcome.Text = "Welcome, " + user.First_Name + " " + user.Last_Name;
+                //Displaying correct buttons according to the UserType of the logged in User
+                if (user.isFarmer())
                 {
                     btnManageListings.Visible = true;
                     btnBrowse.Visible = false;
                     btnAddPRoduce.Visible = true;
                 }
-                else if (((User)Session["User"]).UserType == UserType.Client)
+                else if (user.isClient())
                 {
-                    btnManageListings.Visible = false;
                     btnBrowse.Visible = true;
-                    btnAddPRoduce.Visible = false;
-                }
-                else if (((User)Session["User"]).UserType == UserType.Admin)
-                {
-                    btnManageListings.Visible = true;
-                    btnBrowse.Visible = true;
-                    btnAddPRoduce.Visible = true;
+
+                    //Validating if user is Admin
+                    if (user.isAdmin())
+                    {
+                        btnManageListings.Visible = false;
+                        btnAddPRoduce.Visible = false;
+                    }
+                    else
+                    {
+                        btnManageListings.Visible = true;
+                        btnAddPRoduce.Visible = true;
+                    }             
                 }
             }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            //Setting User session object to null and redirecting to login page
             Session["User"] = null;
             Response.Redirect("~/default.aspx");
         }
 
         protected void btnAccount_Click(object sender, EventArgs e)
         {
+            //Redirecting to change account details page
             Response.Redirect("~/change-account-details.aspx");
         }
 
         protected void btnManageListings_Click(object sender, EventArgs e)
         {
+            //Redirecting to list produce page
             Response.Redirect("~/list-produce.aspx");
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
+            //Redirecting to browse produce page
             Response.Redirect("~/browse-produce.aspx");
         }
 
         protected void btnAddPRoduce_Click(object sender, EventArgs e)
         {
+            //Redirecting to add produce page
             Response.Redirect("~/add-produce");
         }
     }

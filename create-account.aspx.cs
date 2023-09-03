@@ -12,16 +12,17 @@ namespace CMPG223_Group_13
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Validating logged in user object
             if (Session["User"] != null)
             {
-                // send to dashboard
+                //Redirecting to dashboard
                 Response.Redirect("~/dashboard.aspx");
             }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            // user info
+            //Getting user info from all textboxes
             string userPassword = tbPassword.Text,
                 firstName = tbFirstname.Text,
                 lastName = tbLastname.Text,
@@ -30,45 +31,54 @@ namespace CMPG223_Group_13
                 shippingAddress = tbShippingAddress.Text;
             bool isFarmer = cbFarmerAccount.Checked;
 
-            // bank info
+            //Getting bank information from textboxes
             string bankName = tbBankName.Text, accNumber = tbAccountNumber.Text;
 
-            // farm info
-            string farmName = tbFarmName.Text, farmAddress = tbFarmAddress.Text;
-
-            // create user
+            //Creating user obejct from entered information
             User user = new User(-1, (isFarmer) ? UserType.Farmer : UserType.Client, firstName, lastName, email, phoneNumber, shippingAddress, userPassword);
 
-            // only add user if user doesn't exist
-            int userID;
-            if (getClientByEmail(email) == null && !isFarmer)
+            if (user.isFarmer())
             {
-                // add client
-                insertClient(user);
-                userID = getClientByEmail(email).User_ID;
+                if (!farmerExists(user))
+                {
+                    //Adding farmer into the farmer table in database
+                    insertFarmer(user);
+                    //Getting farm information from textboxes
+                    string farmName = tbFarmName.Text, 
+                           farmAddress = tbFarmAddress.Text;
+
+                    //Creating farm object from entered information
+                    Farm farm = new Farm(-1, user.User_ID, farmName, farmAddress);
+
+                    //Adding farm into the farm table in database
+                    Farm.insertIntoDB(farm);
+                }
             }
-            else if (getFarmerByEmail(email) == null && isFarmer)
+            else if (user.isClient())
             {
-                // add farmer
-                insertFarmer(user);
-                // add farm
-                userID = getFarmerByEmail(email).User_ID;
-                Farm farm = new Farm(-1, userID, farmName, farmAddress);
-                Farm.insertIntoDB(farm);
+                if (!clientExists(user))
+                {
+                    //Adding user as a client in the Client table in database
+                    insertClient(user);
+                }
             }
             else
-            { 
-                //another user is already registered with that email
+            {
                 tbEmail.Focus();
-                return; //exit function
+                //Exiting method since user exists
+                return;
             }
 
-            // add bank account            
-            Bank_Account_Info bankAccount = new Bank_Account_Info(-1, (isFarmer) ? userID : -1, (isFarmer) ? -1 : userID, bankName, accNumber);
+            
+
+            //Creating and adding bank account info to bank account table in database          
+            Bank_Account_Info bankAccount = new Bank_Account_Info(-1, user.isFarmer() ? user.User_ID : -1, user.isClient() ? user.User_ID : -1, bankName, accNumber);
             Bank_Account_Info.insertIntoDB(bankAccount);
 
-            // set Session
-            Session["User"] = (isFarmer) ? getFarmerByID(userID) : getClientByID(userID);
+            //Setting logged in session user object
+            Session["User"] = user;
+
+            //Redirecting to dashboard
             Response.Redirect("~/dashboard.aspx");
         }
     }
