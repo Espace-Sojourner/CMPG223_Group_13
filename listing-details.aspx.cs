@@ -12,27 +12,26 @@ namespace CMPG223_Group_13
 {
     public partial class listing_details : System.Web.UI.Page
     {
-        Listed_Produce listing;
-        User farmer;
-        Produce produce;
-        Unit_of_Measure uom;
-        static Cart_Item prevItem;
+        private Listed_Produce listing;
+        private User farmer;
+        private Produce produce;
+        private Unit_of_Measure uom;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // create new cart if it doesn't exists
-            if (Session["Cart"] == null) Session["Cart"] = new ArrayList();
+            //Create Cart object session item
+            if (Session["Cart"] == null) Session["Cart"] = new List<Cart_Item>();
 
-            // check if listing selected
+            //Returning of no Listed Produce object is found
             if (Session["LP_ID"] == null) Response.Redirect("~/browse-produce.aspx");
 
+            //Getting Listed Produce object from Session
             listing = Listed_Produce.getByID((int)Session["LP_ID"]);
             farmer = getFarmerByID(listing.Farmer_ID);
             produce = Produce.getByID(listing.Produce_ID);
             uom = Unit_of_Measure.getByID(produce.UOM_ID);
 
-            // --- FILL LISTING DETAILS ---
-
+            //Chaning form to contain correct details
             lblAdded.Visible = false;
             imgProduce.ImageUrl = produce.Image_Link;
             lblProduceName.Text = produce.Produce_Name;
@@ -51,60 +50,70 @@ namespace CMPG223_Group_13
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
         {
-            // add & take to cart
+            //Redirecting to cart page
             addListingToCart();
             Response.Redirect("~/cart.aspx");
         }
 
         protected void addListingToCart()
         {
-            int quantity; // to be purchased
-            double price; // quantity times price per UOM
-            bool isCorrect = false; // quantity validation
+            int quantity; //Quantity to be purchased
+            double price; //Quantity times price per UOM
             if (int.TryParse(tbQuantity.Text, out quantity))
+            {
+                //Validating quantity
                 if (quantity <= listing.Available_Quantity && quantity > 0)
                 {
-                    isCorrect = true;         
                     price = quantity * listing.Price;
-                    
-                    Cart_Item item;
-                    if (prevItem != null)
+
+                    //Creating quantity 
+                    Cart_Item item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.Abbreviation, price);
+
+                    //Getting Cart object from session and setting local variable
+                    List<Cart_Item> localList = (List<Cart_Item>)Session["Cart"];
+                    if (localList.Contains(item))
                     {
-                        // remove previous item
-                        ((ArrayList)Session["Cart"]).Remove(prevItem);
-                        // create updated cart item with new quantity and price
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity + prevItem.quantity, uom.Abbreviation, price + prevItem.price);
+                        //Updating cart item
+                        Cart_Item updatedItem = localList[localList.IndexOf(item)];
+                        updatedItem.quantity += quantity;
+
+                        //Setting updated item in list
+                        localList[localList.IndexOf(item)] = updatedItem;
                     }
                     else
                     {
-                        // create cart item
-                        item = new Cart_Item(listing.LP_ID, produce.Produce_Name, quantity, uom.Abbreviation, price);                                           
+                        //Adding cart item to cart item list
+                        localList.Add(item);
                     }
-                    // add item to cart  
-                    ((ArrayList)Session["Cart"]).Add(item);
-                    prevItem = item;
-                }           
 
-            // wrong format or quantity more than available
-            if (!isCorrect) tbQuantity.Focus();
+                    //Setting Cart object session from local variable
+                    Session["Cart"] = localList;            
+                }
+                else
+                {
+                    tbQuantity.Focus();
+                }
+            }
+
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            // redirect to listings
+            //Redirecting to browse produce page
             Session["LP_ID"] = null;
             Response.Redirect("~/browse-produce.aspx");
         }
 
         protected void btnViewCart_Click(object sender, EventArgs e)
         {
-            // redirect to cart
+            //Redirecting to cart page
             Session["LP_ID"] = null;
             Response.Redirect("~/cart.aspx");
         }
 
         protected void btnBacktoBrowse_Click(object sender, EventArgs e)
         {
+            //Redirecting to browse-produce page
             Response.Redirect("~/browse-produce.aspx");
         }
     } 
