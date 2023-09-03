@@ -42,8 +42,8 @@ namespace CMPG223_Group_13
         {
             if (lstCart.SelectedIndex >= 0)
             {
-                lstCart.Items.RemoveAt(lstCart.SelectedIndex);
                 cartItems.RemoveAt(lstCart.SelectedIndex);
+                lstCart.Items.RemoveAt(lstCart.SelectedIndex);
             }            
         }
 

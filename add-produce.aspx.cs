@@ -40,7 +40,7 @@ namespace CMPG223_Group_13
                                 Produce produce = Produce.getByID(ddlProduce.SelectedIndex + 1);
                                 int farmerid = ((User)Session["User"]).User_ID;
                                 DateTime expiration = calExpirationDate.SelectedDate;
-                                DatabaseHandler.executeInsert($"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Date) VALUES({farmerid}, {produce.Produce_ID}, {price}, {quantity}, {expiration})");
+                                DatabaseHandler.executeInsert($"INSERT INTO Listed_Produce (Farmer_ID, Produce_ID, Price, Available_Quantity, Expiration_Dates) VALUES({farmerid}, {produce.Produce_ID}, {price}, {quantity}, '{expiration}')");
                             }
                             else
                             {
