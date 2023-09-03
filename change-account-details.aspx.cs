@@ -72,13 +72,18 @@ namespace CMPG223_Group_13
                 email = tbEmail.Text,
                 phone = tbPhone.Text,
                 address = tbShippingAddress.Text,
-                oldPassword = tbOldPassword.Text;
+                oldPassword = tbOldPassword.Text,
+                password = user.User_Password;
 
-            // validate old password
-            string cmd = $"select * from {user.UserType} where Email_Address = {user.Email_Address} and Password = {oldPassword}";
-            DataTable dt = DatabaseHandler.executeSelectToDT(cmd);
-            // create new password
-            string newPassword = (dt.Rows.Count != 0) ? tbNewPassword.Text : user.User_Password;
+            // user entered password
+            if (!string.IsNullOrEmpty(oldPassword))
+            {
+                // validate old password
+                string cmd = $"select * from {user.UserType.ToString()} where Email_Address = '{user.Email_Address}' and Password = '{oldPassword}'";
+                DataTable dt = DatabaseHandler.executeSelectToDT(cmd);
+                // create new password
+                if (dt.Rows.Count != 0 && !string.IsNullOrEmpty(tbNewPassword.Text)) password = tbNewPassword.Text;
+            }
 
             // bank info
             string bankName = tbBankName.Text, accNumber = tbAccountNumber.Text;
@@ -86,7 +91,7 @@ namespace CMPG223_Group_13
             string farmName = tbFarmName.Text, farmAddress = tbFarmAddress.Text;
 
             // create new user
-            User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,newPassword);
+            User newUser = new User(user.User_ID,user.UserType,firstName,lastName,email,phone,address,password);
 
             //update user
             if (isFarmer)
