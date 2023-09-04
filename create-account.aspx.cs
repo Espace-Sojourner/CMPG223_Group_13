@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -43,6 +44,8 @@ namespace CMPG223_Group_13
                 {
                     //Adding farmer into the farmer table in database
                     insertFarmer(user);
+                    //Updating user ID with database assigned ID
+                    user.User_ID = getFarmerByEmail(user.Email_Address).User_ID;
                     //Getting farm information from textboxes
                     string farmName = tbFarmName.Text, 
                            farmAddress = tbFarmAddress.Text;
@@ -60,6 +63,8 @@ namespace CMPG223_Group_13
                 {
                     //Adding user as a client in the Client table in database
                     insertClient(user);
+                    //Updating user ID with database assigned ID
+                    user.User_ID = getClientByEmail(user.Email_Address).User_ID;
                 }
             }
             else
@@ -69,9 +74,8 @@ namespace CMPG223_Group_13
                 return;
             }
 
-            
 
-            //Creating and adding bank account info to bank account table in database          
+            //Creating and adding bank account info to bank account table in database
             Bank_Account_Info bankAccount = new Bank_Account_Info(-1, user.isFarmer() ? user.User_ID : -1, user.isClient() ? user.User_ID : -1, bankName, accNumber);
             Bank_Account_Info.insertIntoDB(bankAccount);
 
