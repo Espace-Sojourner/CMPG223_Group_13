@@ -46,11 +46,10 @@ namespace CMPG223_Group_13
 
         protected void gvProduce_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Getting Listed Produce object from row data
-            Listed_Produce selProduce = Listed_Produce.RowToData(gvProduce.SelectedRow);
-
+            //Getting Listed Produce ID from row data
+            int LP_ID = int.Parse(gvProduce.SelectedRow.Cells[4].Text);
             //Setting Listed Produce ID in session
-            Session["LP_ID"] = selProduce.LP_ID;
+            Session["LP_ID"] = LP_ID;
 
             //Redirecting to listing details page
             Response.Redirect("~/listing-details.aspx");
