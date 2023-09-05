@@ -30,10 +30,15 @@ namespace CMPG223_Group_13
         //Getting object from database by ID
         public static Order getByID(int ID)
         {
-            string sql = $"SELECT * FROM Order WHERE Order_ID = {ID}";
-            DataTable dt = DatabaseHandler.executeSelectToDT(sql);
-            if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
-            else return null;
+            if (ID >= 0)
+            {
+                string sql = $"SELECT * FROM Order WHERE Order_ID = {ID}";
+                DataTable dt = DatabaseHandler.executeSelectToDT(sql);
+                if (dt?.Rows?.Count > 0) return RowToData(dt.Rows[0]);
+                else return null;
+            }
+
+            return null;
         }
 
         //Checking if object exists in database
@@ -52,7 +57,7 @@ namespace CMPG223_Group_13
             }
             else
             {
-                string sql = $"INSERT INTO Order (Client_ID, LP_ID, Order_Date, Order_Price, Bought_Quantity) " +
+                string sql = $"INSERT INTO [Order] (Client_ID, LP_ID, Order_Date, Order_Price, Bought_Quantity) " +
                     $"VALUES ({order.Client_ID}, {order.LP_ID}, '{order.Order_Date}', {order.Order_Price}, {order.Bought_Quantity})";
                 DatabaseHandler.executeInsert(sql);
             }
@@ -62,7 +67,7 @@ namespace CMPG223_Group_13
         {
             if (Exists(order))
             {
-                string sql = $"UPDATE Order SET " +
+                string sql = $"UPDATE [Order] SET " +
                     $"Client_ID = {order.Client_ID}, " +
                     $"LP_ID = {order.LP_ID}, " +
                     $"Order_Date = '{order.Order_ID}', " +
@@ -82,7 +87,7 @@ namespace CMPG223_Group_13
         {
             if (Exists(order))
             {
-                string sql = $"DELETE FROM Order WHERE Order_ID = {order.Order_ID}";
+                string sql = $"DELETE FROM [Order] WHERE Order_ID = {order.Order_ID}";
                 DatabaseHandler.executeDelete(sql);
             }
             else
